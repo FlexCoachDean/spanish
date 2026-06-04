@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mis Islas · Spanish Language Islands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#f4ecdc; --sand-2:#efe5d1; --paper:#fbf6ec; --ink:#21302e; --ink-soft:#4a5b58;
+  --ocean:#0e5751; --ocean-deep:#093f3a; --ocean-light:#1c7d74; --foam:#bfe3dd;
+  --clay:#c5562f; --clay-soft:#e08a4f; --gold:#d9a441; --line:#dfd2b8;
+  --good:#2f8a5b; --bad:#bd3b3b; --shadow:0 10px 30px -12px rgba(9,63,58,.35);
+  --shadow-sm:0 4px 14px -8px rgba(9,63,58,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Mulish',system-ui,sans-serif;color:var(--ink);
+  background:var(--sand);
+  background-image:
+    radial-gradient(1200px 500px at 80% -10%, rgba(28,125,116,.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(197,86,47,.10), transparent 55%);
+  -webkit-font-smoothing:antialiased;line-height:1.5;padding-bottom:90px;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+
+header.top{padding:26px 0 14px;position:relative}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brand h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(28px,6vw,44px);letter-spacing:-.02em;color:var(--ocean-deep);line-height:.95}
+.brand h1 em{font-style:italic;color:var(--clay)}
+.brand .sub{font-size:13px;color:var(--ink-soft);font-weight:600;letter-spacing:.02em}
+.streak-pill{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);
+  padding:8px 14px;border-radius:999px;box-shadow:var(--shadow-sm);font-weight:800;color:var(--ocean-deep);font-size:15px}
+.streak-pill .flame{font-size:18px}
+.toolbar-mini{position:absolute;top:30px;right:0;display:flex;gap:8px}
+@media(max-width:560px){.toolbar-mini{position:static;margin-top:10px;justify-content:flex-end}}
+
+nav.tabs{display:flex;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:6px;
+  box-shadow:var(--shadow-sm);position:sticky;top:10px;z-index:20;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{flex:1;min-width:fit-content;border:none;background:transparent;font-family:'Mulish';font-weight:800;
+  font-size:14px;color:var(--ink-soft);padding:11px 12px;border-radius:11px;cursor:pointer;white-space:nowrap;
+  transition:all .18s;display:flex;align-items:center;gap:7px;justify-content:center}
+nav.tabs button .ic{font-size:16px}
+nav.tabs button:hover{color:var(--ocean-deep)}
+nav.tabs button.active{background:var(--ocean);color:#fff;box-shadow:0 6px 16px -8px var(--ocean-deep)}
+
+main{margin-top:22px}
+.view{display:none;animation:rise .4s ease both}
+.view.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+h2.section{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,4vw,30px);color:var(--ocean-deep);
+  letter-spacing:-.01em;margin-bottom:4px}
+.section-sub{color:var(--ink-soft);font-size:14px;margin-bottom:20px;max-width:62ch}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+
+.btn{font-family:'Mulish';font-weight:800;font-size:14px;border:none;border-radius:12px;padding:11px 18px;cursor:pointer;
+  transition:transform .12s,box-shadow .18s,background .18s;display:inline-flex;align-items:center;gap:8px}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--clay);color:#fff;box-shadow:0 8px 18px -10px var(--clay)}
+.btn.primary:hover{background:#b14a26}
+.btn.ocean{background:var(--ocean);color:#fff}
+.btn.ocean:hover{background:var(--ocean-deep)}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ocean-deep)}
+.btn.ghost:hover{border-color:var(--ocean);background:#fff}
+.btn.sm{padding:8px 12px;font-size:13px;border-radius:10px}
+.btn.icon{padding:9px;border-radius:10px;background:transparent;border:1.5px solid var(--line);color:var(--ocean-deep);font-size:15px}
+.btn.icon:hover{border-color:var(--ocean);background:#fff}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+.today-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+@media(max-width:720px){.today-grid{grid-template-columns:1fr}}
+.checklist .item{display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px dashed var(--line)}
+.checklist .item:last-child{border-bottom:none}
+.check{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--line);flex:none;display:grid;place-items:center;
+  font-size:15px;color:transparent;transition:.2s}
+.item.done .check{background:var(--good);border-color:var(--good);color:#fff}
+.item .ci-title{font-weight:800;color:var(--ink)}
+.item .ci-desc{font-size:12.5px;color:var(--ink-soft)}
+.item.done .ci-title{color:var(--ink-soft)}
+.item .go{margin-left:auto}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:linear-gradient(160deg,var(--ocean),var(--ocean-deep));color:#fff;border-radius:14px;padding:16px}
+.stat.clay{background:linear-gradient(160deg,var(--clay-soft),var(--clay))}
+.stat .n{font-family:'Fraunces',serif;font-weight:900;font-size:34px;line-height:1}
+.stat .l{font-size:12px;font-weight:700;opacity:.9;margin-top:4px;letter-spacing:.03em;text-transform:uppercase}
+.daily-q{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--clay);line-height:1.4}
+.daily-a{font-family:'Fraunces',serif;font-size:18px;color:var(--ocean-deep);line-height:1.4;margin-top:6px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);
+  cursor:pointer;color:var(--ink-soft);transition:.15s}
+.chip.active{background:var(--ocean);border-color:var(--ocean);color:#fff}
+.chip:hover:not(.active){border-color:var(--ocean-light)}
+
+/* Q&A island card */
+.icard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:0;margin-bottom:12px;
+  box-shadow:var(--shadow-sm);overflow:hidden}
+.icard .lang-block{padding:14px 16px}
+.icard .lang-block.en{background:var(--sand-2)}
+.icard .lang-block.es{background:var(--paper)}
+.icard .lang-tag{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.icard .lang-block.es .lang-tag{color:var(--clay)}
+.qa-q{font-weight:800;color:var(--ink);font-size:14.5px;display:flex;gap:7px}
+.qa-q .lbl{color:var(--ocean-light);font-weight:900;flex:none}
+.icard .lang-block.es .qa-q{font-family:'Fraunces';font-weight:600;color:var(--ocean-deep);font-size:16px}
+.qa-a{color:var(--ink-soft);font-size:14px;margin-top:4px;display:flex;gap:7px}
+.qa-a .lbl{color:var(--clay-soft);font-weight:900;flex:none}
+.icard .lang-block.es .qa-a{color:var(--ink);font-size:15px}
+.icard .foot{display:flex;align-items:center;gap:10px;padding:10px 16px;border-top:1px solid var(--line);background:var(--paper)}
+.tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:6px;
+  background:var(--sand-2);color:var(--ocean-deep)}
+.box-dots{display:flex;gap:4px}
+.box-dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.box-dots i.on{background:var(--gold)}
+.icard .foot .sp{margin-left:auto;display:flex;gap:6px}
+
+.flash{background:linear-gradient(165deg,var(--paper),var(--sand-2));border:1px solid var(--line);border-radius:22px;
+  padding:34px 24px;text-align:center;box-shadow:var(--shadow);min-height:230px;display:flex;flex-direction:column;
+  justify-content:center;gap:14px;position:relative;overflow:hidden}
+.flash::before{content:"〜";position:absolute;font-size:160px;color:var(--foam);opacity:.4;right:-20px;bottom:-60px;font-family:'Fraunces'}
+.flash .qline{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--clay);position:relative}
+.flash .prompt{font-family:'Fraunces',serif;font-size:clamp(20px,4.5vw,26px);font-weight:600;color:var(--ocean-deep);position:relative;line-height:1.3}
+.flash .prompt .qen{display:block;font-family:'Mulish';font-size:14px;font-weight:600;color:var(--ink-soft);margin-top:6px}
+.flash .answer{position:relative;min-height:24px}
+.flash .answer .aes{font-family:'Fraunces';font-size:clamp(18px,4vw,22px);font-weight:600;color:var(--clay);line-height:1.35}
+.flash .answer .aen{font-size:14px;color:var(--ink-soft);margin-top:6px}
+.flash .hint{font-size:13px;color:var(--ink-soft);position:relative}
+.rate-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.empty{text-align:center;padding:40px 20px;color:var(--ink-soft)}
+.empty .big{font-size:46px;margin-bottom:10px}
+
+.player{background:linear-gradient(165deg,var(--ocean),var(--ocean-deep));color:#fff;border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+.player .now{min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
+.player .now .nowq{font-size:14px;font-weight:700;opacity:.8}
+.player .now .nowa{font-family:'Fraunces',serif;font-size:clamp(18px,4vw,24px);font-weight:600;line-height:1.3}
+.player .now .nowen{font-size:13px;font-weight:600;opacity:.7}
+.transport{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 6px}
+.tbtn{width:50px;height:50px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;font-size:18px;cursor:pointer;
+  display:grid;place-items:center;transition:.15s}
+.tbtn:hover{background:rgba(255,255,255,.26)}
+.tbtn.play{width:66px;height:66px;background:var(--gold);color:var(--ocean-deep);font-size:24px;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+.tbtn.play:hover{background:#e8b652}
+.progress-track{height:6px;background:rgba(255,255,255,.18);border-radius:3px;overflow:hidden;margin-top:14px}
+.progress-fill{height:100%;background:var(--gold);width:0;transition:width .3s}
+.player .ctrls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.player label{font-size:12px;font-weight:700;opacity:.85;display:block;margin-bottom:5px}
+.player select,.player input[type=range]{width:100%}
+.listen-list{margin-top:16px;max-height:280px;overflow:auto}
+.ll-item{padding:9px 12px;border-radius:9px;font-size:14px;display:flex;gap:8px;align-items:center;cursor:pointer}
+.ll-item:hover{background:var(--sand-2)}
+.ll-item.playing{background:var(--foam);font-weight:700;color:var(--ocean-deep)}
+.ll-item .num{font-size:11px;color:var(--ink-soft);width:22px;flex:none}
+
+.recall-q{font-family:'Fraunces',serif;font-size:clamp(20px,4.5vw,26px);font-weight:600;color:var(--ocean-deep);text-align:center;margin:4px 0 4px;line-height:1.3}
+.recall-ctx{text-align:center;font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+.recall-ctx b{color:var(--clay)}
+.recall-dir{text-align:center;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--clay);margin-bottom:12px}
+textarea.recall-in{width:100%;font-family:'Mulish';font-size:17px;padding:14px 16px;border:2px solid var(--line);border-radius:14px;
+  resize:none;background:var(--paper);color:var(--ink);min-height:84px}
+textarea.recall-in:focus{outline:none;border-color:var(--ocean)}
+.verdict{margin-top:16px;border-radius:14px;padding:16px;display:none}
+.verdict.show{display:block;animation:rise .3s both}
+.verdict.ok{background:#e7f4ec;border:1px solid var(--good)}
+.verdict.no{background:#fbeaea;border:1px solid var(--bad)}
+.verdict .vh{font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.verdict.ok .vh{color:var(--good)} .verdict.no .vh{color:var(--bad)}
+.verdict .correct{font-family:'Fraunces';font-size:18px;color:var(--ink)}
+.score-row{display:flex;gap:18px;justify-content:center;margin-bottom:16px}
+.score-row .s{text-align:center}
+.score-row .s b{font-family:'Fraunces';font-size:26px;color:var(--ocean-deep);display:block}
+.score-row .s span{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--ink-soft)}
+
+.gweek{display:flex;align-items:center;gap:10px;margin:22px 0 10px}
+.gweek h3{font-family:'Fraunces';font-size:20px;color:var(--ocean-deep)}
+.gweek .badge{font-size:11px;font-weight:800;background:var(--gold);color:var(--ocean-deep);padding:3px 10px;border-radius:999px;text-transform:uppercase}
+.grule{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--clay);border-radius:12px;padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+.grule h4{font-family:'Fraunces';font-size:18px;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.grule .exp{font-size:14px;color:var(--ink-soft);margin-bottom:10px}
+.gex{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px dashed var(--line);font-size:14px}
+.gex .gx-es{font-family:'Fraunces';font-weight:600;color:var(--ocean-deep)}
+.gex .gx-en{color:var(--ink-soft);font-size:13px}
+
+.modal-bg{position:fixed;inset:0;background:rgba(9,40,37,.5);backdrop-filter:blur(3px);z-index:100;display:none;
+  align-items:flex-start;justify-content:center;padding:40px 16px;overflow:auto}
+.modal-bg.show{display:flex}
+.modal{background:var(--paper);border-radius:20px;max-width:540px;width:100%;padding:26px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);animation:rise .3s both}
+.modal h3{font-family:'Fraunces';font-size:22px;color:var(--ocean-deep);margin-bottom:4px}
+.modal .mh-sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:800;font-size:13px;margin-bottom:6px;color:var(--ink)}
+.field input,.field textarea,.field select{width:100%;font-family:'Mulish';font-size:15px;padding:11px 13px;border:1.5px solid var(--line);
+  border-radius:11px;background:#fff;color:var(--ink)}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--ocean)}
+.field textarea{min-height:56px;resize:vertical}
+.field.half-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-acts{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+.ex-builder .row2{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:8px}
+@media(max-width:520px){.ex-builder .row2{grid-template-columns:1fr}}
+
+.note{background:#fff7e6;border:1px solid var(--gold);border-radius:12px;padding:12px 14px;font-size:13px;color:#7a5a14;display:flex;gap:10px}
+.note b{color:#5e4310}
+.fab{position:fixed;right:20px;bottom:24px;z-index:30;background:var(--clay);color:#fff;border:none;border-radius:999px;
+  padding:15px 22px;font-weight:800;font-family:'Mulish';font-size:15px;box-shadow:0 12px 28px -10px var(--clay);cursor:pointer;display:flex;gap:8px;align-items:center}
+.fab:active{transform:scale(.96)}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ocean-deep);color:#fff;
+  padding:12px 20px;border-radius:999px;font-weight:700;font-size:14px;z-index:200;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.muted{color:var(--ink-soft);font-size:13px}
+.center{text-align:center}
+footer{text-align:center;color:var(--ink-soft);font-size:12px;padding:30px 0 10px}
+.kbd{font-family:monospace;background:var(--sand-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px}
+
+/* Vocabulary hero */
+.vocab-hero{background:linear-gradient(135deg,var(--ocean-deep),var(--ocean) 60%,var(--ocean-light));color:#fff;
+  border:none;border-radius:20px;padding:22px 24px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer}
+.vocab-hero::after{content:"〜";position:absolute;font-size:200px;font-family:'Fraunces';color:rgba(255,255,255,.06);right:-10px;top:-70px}
+.vocab-hero .vh-top{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;position:relative}
+.vocab-hero .vh-num{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(40px,9vw,58px);line-height:.85}
+.vocab-hero .vh-words{font-family:'Fraunces';font-style:italic;font-size:18px;opacity:.9;padding-bottom:6px}
+.vocab-hero .vh-target{margin-left:auto;text-align:right;padding-bottom:6px}
+.vocab-hero .vh-target b{font-size:20px;font-family:'Fraunces'}
+.vocab-hero .vh-target span{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.8}
+.vocab-bar{height:12px;background:rgba(255,255,255,.16);border-radius:7px;overflow:hidden;margin-top:16px;position:relative}
+.vocab-bar .fill{height:100%;background:linear-gradient(90deg,var(--gold),#f0c869);border-radius:7px;width:0;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.vocab-hero .vh-sub{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:12.5px;font-weight:600;opacity:.9;flex-wrap:wrap;position:relative}
+.vocab-hero .vh-cta{font-size:12px;font-weight:800;opacity:.85;text-decoration:underline;text-underline-offset:3px}
+.mile-pips{display:flex;gap:6px;margin-top:12px;position:relative;flex-wrap:wrap}
+.mile-pips .pip{font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.14)}
+.mile-pips .pip.done{background:var(--gold);color:var(--ocean-deep)}
+.mile-pips .pip.curr{background:rgba(255,255,255,.32);box-shadow:0 0 0 2px rgba(255,255,255,.4) inset}
+
+.badge-master{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:6px;background:var(--good);color:#fff}
+.btn.knowit{border-color:var(--good);color:var(--good)}
+.btn.knowit.on{background:var(--good);color:#fff;border-color:var(--good)}
+
+.wordchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.wchip{font-size:13px;font-weight:600;padding:5px 11px;border-radius:8px;background:var(--sand-2);color:var(--ocean-deep);border:1px solid var(--line)}
+.wchip.todo{background:transparent;color:var(--ink-soft);border-style:dashed;opacity:.7}
+.word-tabs{display:flex;gap:8px;margin-bottom:14px}
+.word-tabs button{flex:1;padding:9px;border-radius:10px;border:1.5px solid var(--line);background:transparent;font-family:'Mulish';font-weight:800;font-size:13px;color:var(--ink-soft);cursor:pointer}
+.word-tabs button.active{background:var(--ocean);color:#fff;border-color:var(--ocean)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Mis <em>Islas</em></h1>
+      <span class="sub">Your Spanish Language-Islands trainer · A1–A2</span>
+      <div class="streak-pill"><span class="flame">🔥</span><span id="streakNum">0</span> <span style="font-weight:600;font-size:13px;opacity:.8">day streak</span></div>
+    </div>
+    <div class="toolbar-mini">
+      <button class="btn icon" id="btnSettings" title="Settings">⚙︎</button>
+      <button class="btn icon" id="btnBackup" title="Backup &amp; audio export">⇅</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button data-view="today" class="active"><span class="ic">🌅</span>Today</button>
+    <button data-view="islands"><span class="ic">🏝️</span>Islands</button>
+    <button data-view="listen"><span class="ic">🎧</span>Listen</button>
+    <button data-view="recall"><span class="ic">✍️</span>Recall</button>
+    <button data-view="grammar"><span class="ic">📐</span>Grammar</button>
+  </nav>
+
+  <main>
+    <!-- TODAY -->
+    <section class="view active" id="view-today">
+      <h2 class="section">Buenos días 👋</h2>
+      <p class="section-sub">Three things every day builds the islands. Tick all three (plus your weekly grammar) to keep the streak alive.</p>
+
+      <div class="vocab-hero" id="vocabHero" title="See your words">
+        <div class="vh-top">
+          <div class="vh-num" id="vocabCount">0</div>
+          <div class="vh-words">words learned</div>
+          <div class="vh-target"><b id="vocabTarget">1,000</b><span>next milestone</span></div>
+        </div>
+        <div class="vocab-bar"><div class="fill" id="vocabFill"></div></div>
+        <div class="vh-sub">
+          <span id="vocabToGo">1,000 to go</span>
+          <span id="vocabCta" class="vh-cta">View &amp; bank words →</span>
+        </div>
+        <div class="mile-pips" id="milePips"></div>
+      </div>
+
+      <div class="today-grid">
+        <div class="panel checklist">
+          <div class="item" id="ck-islands">
+            <div class="check">✓</div>
+            <div><div class="ci-title">Practise your islands</div><div class="ci-desc"><span id="dueCount">0</span> islands due for spaced repetition</div></div>
+            <button class="btn ocean sm go" data-goto="islands">Practise</button>
+          </div>
+          <div class="item" id="ck-listen">
+            <div class="check">✓</div>
+            <div><div class="ci-title">Listen (comprehensible input)</div><div class="ci-desc">Loop your Q&amp;A islands in Spanish</div></div>
+            <button class="btn ocean sm go" data-goto="listen">Listen</button>
+          </div>
+          <div class="item" id="ck-recall">
+            <div class="check">✓</div>
+            <div><div class="ci-title">Active recall test</div><div class="ci-desc">Answer the questions from memory</div></div>
+            <button class="btn ocean sm go" data-goto="recall">Test me</button>
+          </div>
+          <div class="item" id="ck-grammar">
+            <div class="check">✓</div>
+            <div><div class="ci-title">Review this week's grammar</div><div class="ci-desc">2 rules, repeated daily</div></div>
+            <button class="btn ocean sm go" data-goto="grammar">Review</button>
+          </div>
+        </div>
+        <div>
+          <div class="stat-grid" style="margin-bottom:16px">
+            <div class="stat"><div class="n" id="stMastered">0</div><div class="l">Mastered</div></div>
+            <div class="stat clay"><div class="n" id="stTotal">0</div><div class="l">Islands</div></div>
+            <div class="stat clay"><div class="n" id="stLearning">0</div><div class="l">Learning</div></div>
+            <div class="stat"><div class="n" id="stReviews">0</div><div class="l">Reps today</div></div>
+          </div>
+          <div class="panel">
+            <p class="daily-q" id="dailyQ">“…”</p>
+            <p class="daily-a" id="dailyA"></p>
+            <p class="muted" id="dailyEn" style="margin-top:8px"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ISLANDS -->
+    <section class="view" id="view-islands">
+      <h2 class="section">Your Language Islands</h2>
+      <p class="section-sub">Each island is a <b>question and your answer</b> — shown in English and in Spanish, just like your sheet. These are the lines you want ready to "swim to" in conversation. Edit them so they sound exactly like <i>you</i>.</p>
+
+      <div class="row" style="margin-bottom:16px">
+        <button class="btn primary" id="startPractice">▶ Practise due islands (<span id="dueCount2">0</span>)</button>
+        <button class="btn ghost" id="addSentence">＋ Add island</button>
+      </div>
+
+      <!-- Practice mode -->
+      <div id="practiceArea" style="display:none">
+        <div class="flash">
+          <div class="qline" id="pQline">Question</div>
+          <div class="prompt" id="pPrompt"></div>
+          <div class="hint" id="pHint">Answer it in Spanish, then reveal</div>
+          <div class="answer" id="pAnswer"></div>
+          <div class="rate-row" id="pReveal"><button class="btn ocean" id="pShow">👁 Reveal answer</button> <button class="btn ghost" id="pSpeak">🔊 Hear question</button></div>
+          <div class="rate-row" id="pRate" style="display:none">
+            <button class="btn ghost" id="rateAgain">↻ Again</button>
+            <button class="btn ocean" id="rateGood">✓ Got it</button>
+            <button class="btn ghost" id="pSpeak2">🔊 Answer</button>
+          </div>
+        </div>
+        <p class="center muted" style="margin-top:12px"><span id="pPos">0</span> left · <button class="btn sm ghost" id="endPractice">Exit</button></p>
+      </div>
+
+      <!-- Browse mode -->
+      <div id="browseArea">
+        <div class="filters" id="catFilters"></div>
+        <div id="sentenceList"></div>
+      </div>
+    </section>
+
+    <!-- LISTEN -->
+    <section class="view" id="view-listen">
+      <h2 class="section">Listen &amp; absorb</h2>
+      <p class="section-sub">Comprehensible input: hear each island in Spanish on a loop — question, then your answer — repeated so the rhythm sinks in. Pick a category, press play, and shadow along (repeat out loud).</p>
+
+      <div class="player">
+        <div class="now" id="nowPlaying"><div class="nowa">Press play to begin 🎧</div></div>
+        <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+        <div class="transport">
+          <button class="tbtn" id="lPrev" title="Previous">⏮</button>
+          <button class="tbtn play" id="lPlay" title="Play / pause">▶</button>
+          <button class="tbtn" id="lNext" title="Next">⏭</button>
+        </div>
+        <div class="ctrls">
+          <div>
+            <label>Category</label>
+            <select id="lCategory"></select>
+          </div>
+          <div>
+            <label>Repeats per island: <span id="repVal">2</span></label>
+            <input type="range" id="lRepeats" min="1" max="5" value="2">
+          </div>
+          <div>
+            <label>Speed: <span id="rateVal">0.9</span>×</label>
+            <input type="range" id="lRate" min="0.6" max="1.1" step="0.05" value="0.9">
+          </div>
+          <div>
+            <label>Gap (sec): <span id="gapVal">1.2</span></label>
+            <input type="range" id="lGap" min="0.3" max="3" step="0.1" value="1.2">
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:10px;font-size:13px;flex-wrap:wrap">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.95"><input type="checkbox" id="lIncludeEn"> Speak the English answer first</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.95"><input type="checkbox" id="lQuestion" checked> Include the question</label>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:16px">
+        <span>📱</span>
+        <div><b>Listening on the move (walking / cycling):</b> browser speech pauses when your phone screen locks, so true pocket-playback isn't reliable here. For that, use the <b>⇅ Audio export</b> (top-right) to get a clean script you can turn into a real MP3/podcast for offline background listening. On your computer or with the screen on, the loop above works great.</div>
+      </div>
+
+      <div class="panel" style="margin-top:16px">
+        <div class="muted" style="margin-bottom:8px;font-weight:700">In this loop</div>
+        <div class="listen-list" id="listenList"></div>
+      </div>
+    </section>
+
+    <!-- RECALL -->
+    <section class="view" id="view-recall">
+      <h2 class="section">Active recall</h2>
+      <p class="section-sub">The hard, effective part. You're given one side; type the other from memory. Producing your Spanish answer to a question is exactly the island skill. Correct answers also advance the card's spaced-repetition box.</p>
+
+      <div class="score-row">
+        <div class="s"><b id="recCorrect">0</b><span>Correct</span></div>
+        <div class="s"><b id="recTotal">0</b><span>Attempts</span></div>
+        <div class="s"><b id="recPct">0%</b><span>Accuracy</span></div>
+      </div>
+
+      <div class="panel" id="recallCard">
+        <div class="recall-dir" id="recDir">English → Spanish</div>
+        <div class="recall-ctx" id="recCtx"></div>
+        <div class="recall-q" id="recPrompt"></div>
+        <textarea class="recall-in" id="recInput" placeholder="Type your answer from memory…"></textarea>
+        <div class="row" style="margin-top:14px">
+          <button class="btn primary" id="recCheck">Check</button>
+          <button class="btn ghost" id="recHear">🔊 Hear Spanish</button>
+          <button class="btn ghost" id="recSkip">Skip →</button>
+        </div>
+        <div class="verdict" id="recVerdict">
+          <div class="vh" id="recVh"></div>
+          <div class="muted">Correct answer:</div>
+          <div class="correct" id="recAnswer"></div>
+          <div class="row" style="margin-top:12px">
+            <button class="btn ocean" id="recNext">Next →</button>
+            <button class="btn ghost sm" id="recMarkRight">I was actually right ✓</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:14px;justify-content:center">
+        <label class="muted" style="display:flex;align-items:center;gap:8px;font-weight:700">Direction:
+          <select id="recMode" style="padding:7px 10px;border-radius:9px;border:1.5px solid var(--line)">
+            <option value="en-es" selected>English answer → Spanish</option>
+            <option value="es-en">Spanish answer → English</option>
+            <option value="mixed">Mixed (both)</option>
+          </select>
+        </label>
+        <label class="muted" style="display:flex;align-items:center;gap:8px;font-weight:700">Pool:
+          <select id="recPool" style="padding:7px 10px;border-radius:9px;border:1.5px solid var(--line)">
+            <option value="all">All islands</option>
+            <option value="due">Due cards only</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <!-- GRAMMAR -->
+    <section class="view" id="view-grammar">
+      <h2 class="section">Grammar, the gentle way</h2>
+      <p class="section-sub">2 new rules a week, reviewed daily. No drills — just short rules with real example sentences you can fold into your islands.</p>
+      <div class="row" style="margin-bottom:8px">
+        <button class="btn primary" id="addGrammar">＋ Add a rule</button>
+        <button class="btn ghost" id="newWeek">📅 Start week <span id="nextWeekNum">2</span></button>
+      </div>
+      <div id="grammarList"></div>
+    </section>
+  </main>
+
+  <footer>Built around Mikel Telleria's Language-Islands method · your data is saved on this device. Use <span class="kbd">⇅</span> to back it up or move it to another device.</footer>
+</div>
+
+<button class="fab" id="fabAdd">＋ Island</button>
+<div class="toast" id="toast"></div>
+
+<!-- Island modal -->
+<div class="modal-bg" id="modalSentence">
+  <div class="modal">
+    <h3 id="sentModalTitle">New island</h3>
+    <p class="mh-sub">A question and your answer — write it the way you'd really say it.</p>
+    <div class="field half-row">
+      <div><label>Question (English)</label><textarea id="fqEn" placeholder="What is your job?"></textarea></div>
+      <div><label>Question (Spanish)</label><textarea id="fqEs" placeholder="¿Cuál es tu trabajo?"></textarea></div>
+    </div>
+    <div class="field half-row">
+      <div><label>Your answer (English)</label><textarea id="faEn" placeholder="I am an online coach…"></textarea></div>
+      <div><label>Your answer (Spanish)</label><textarea id="faEs" placeholder="Soy un entrenador online…"></textarea></div>
+    </div>
+    <div class="field"><label>Category</label><input list="catOptions" id="fCat" placeholder="Work"><datalist id="catOptions"></datalist></div>
+    <div class="modal-acts">
+      <button class="btn ghost" id="sentDelete" style="margin-right:auto;display:none;color:var(--bad);border-color:var(--bad)">Delete</button>
+      <button class="btn ghost" data-close>Cancel</button>
+      <button class="btn primary" id="sentSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Grammar modal -->
+<div class="modal-bg" id="modalGrammar">
+  <div class="modal">
+    <h3>Grammar rule</h3>
+    <p class="mh-sub">Keep it short. Add 1–3 example sentences.</p>
+    <div class="field"><label>Rule title</label><input id="gTitle" placeholder="Ser vs Estar"></div>
+    <div class="field"><label>Explanation</label><textarea id="gExp" placeholder="Use SER for identity/permanent things, ESTAR for states & location."></textarea></div>
+    <div class="field"><label>Week number</label><input id="gWeek" type="number" min="1" value="1"></div>
+    <label style="font-weight:800;font-size:13px;margin-bottom:6px;display:block">Examples</label>
+    <div id="exList" class="ex-builder"></div>
+    <button class="btn ghost sm" id="addEx" style="margin-bottom:14px">＋ Add example</button>
+    <div class="modal-acts">
+      <button class="btn ghost" id="gramDelete" style="margin-right:auto;display:none;color:var(--bad);border-color:var(--bad)">Delete</button>
+      <button class="btn ghost" data-close>Cancel</button>
+      <button class="btn primary" id="gramSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Words modal -->
+<div class="modal-bg" id="modalWords">
+  <div class="modal">
+    <h3>Your vocabulary</h3>
+    <p class="mh-sub" id="wordsSummary">—</p>
+    <div class="word-tabs">
+      <button id="wtLearned" class="active">Learned</button>
+      <button id="wtTodo">Still to bank</button>
+    </div>
+    <div id="wordsBody" style="max-height:50vh;overflow:auto"></div>
+    <div class="modal-acts"><button class="btn ghost" data-close>Close</button></div>
+  </div>
+</div>
+
+<!-- Settings modal -->
+<div class="modal-bg" id="modalSettings">
+  <div class="modal">
+    <h3>Settings</h3>
+    <p class="mh-sub">Voice &amp; defaults for speech.</p>
+    <div class="field"><label>Spanish voice</label><select id="setVoice"></select></div>
+    <div class="field"><label>Default speed: <span id="setRateVal">0.9</span>×</label><input type="range" id="setRate" min="0.6" max="1.1" step="0.05" value="0.9"></div>
+    <div class="field"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="setAccents" checked> Ignore accents/punctuation when checking recall</label></div>
+    <div class="modal-acts"><button class="btn ghost" data-close>Close</button><button class="btn primary" id="setSave">Save</button></div>
+  </div>
+</div>
+
+<!-- Backup modal -->
+<div class="modal-bg" id="modalBackup">
+  <div class="modal">
+    <h3>Backup &amp; audio</h3>
+    <p class="mh-sub">Move your data between computer and phone, or create offline audio.</p>
+    <div class="field">
+      <label>1 · Save / move your progress</label>
+      <div class="row">
+        <button class="btn ocean sm" id="doExport">⬇ Export data (.json)</button>
+        <button class="btn ghost sm" id="doImportBtn">⬆ Import data</button>
+        <input type="file" id="importFile" accept="application/json" style="display:none">
+      </div>
+      <p class="muted" style="margin-top:8px">Open this tool on your other device, then Import the file. This is also your safety backup.</p>
+    </div>
+    <div class="field">
+      <label>2 · Offline listening (walking / cycling)</label>
+      <button class="btn ocean sm" id="doAudioScript">⬇ Download audio script (.txt)</button>
+      <p class="muted" style="margin-top:8px">Paste the script into a free text-to-speech tool (your phone's built-in TTS, or a site like ttsmaker / NaturalReaders), set a Spanish voice, and save as MP3. Then it plays in the background with your screen off. Each answer repeats with pauses for shadowing.</p>
+    </div>
+    <div class="modal-acts"><button class="btn ghost" data-close>Close</button></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ============ Storage ============ */
+const STORE_KEY = "mis_islas_v2";
+const hasStore = (typeof window!=="undefined" && window.storage && typeof window.storage.get==="function");
+let DB = null;
+
+async function loadDB(){
+  if(hasStore){
+    try{ const r = await window.storage.get(STORE_KEY,false); if(r && r.value){ DB = JSON.parse(r.value); } }catch(e){ DB = null; }
+  }
+  if(!DB) DB = seedDB();
+  loadDefaults();
+  rolloverDay();
+}
+function loadDefaults(){
+  DB.islands = DB.islands||[];
+  DB.islands.forEach(s=>{ if(s.mastered===undefined) s.mastered=((s.box||1)>=5); });
+  DB.grammar = DB.grammar||[];
+  DB.settings = Object.assign({rate:0.9, voiceURI:"", ignoreAccents:true}, DB.settings||{});
+  DB.stats = Object.assign({streak:0,lastActive:null,reps:{},recall:{c:0,t:0}}, DB.stats||{});
+  DB.today = DB.today||{date:null,islands:false,listen:false,recall:false,grammar:false};
+}
+let saveQueued=false;
+function saveDB(){
+  if(!hasStore) return;
+  if(saveQueued) return; saveQueued=true;
+  setTimeout(async()=>{ saveQueued=false; try{ await window.storage.set(STORE_KEY, JSON.stringify(DB), false); }catch(e){} },120);
+}
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function daysBetween(a,b){ return Math.round((new Date(b)-new Date(a))/86400000); }
+const BOX_DAYS = {1:0,2:1,3:3,4:7,5:16};
+const MILESTONE = 1000;
+
+/* ---- Vocabulary: words learned ---- */
+function wordsOf(text){
+  return (text||"").toLowerCase().normalize("NFC")
+    .replace(/[¿?¡!.,;:"'«»\u201c\u201d\u2018\u2019()\[\]{}…—–\-\/]/g," ")
+    .split(/\s+/).filter(w=>w.length>0 && /[a-záéíóúüñ0-9]/i.test(w));
+}
+function islandWordSet(s){ const set=new Set(); wordsOf(s.qEs).forEach(w=>set.add(w)); wordsOf(s.aEs).forEach(w=>set.add(w)); return set; }
+function learnedWordSet(excludeId){ const set=new Set(); DB.islands.forEach(s=>{ if(s.mastered && s.id!==excludeId){ islandWordSet(s).forEach(w=>set.add(w)); } }); return set; }
+function corpusWordSet(){ const set=new Set(); DB.islands.forEach(s=>islandWordSet(s).forEach(w=>set.add(w))); return set; }
+function learnedCount(){ return learnedWordSet().size; }
+function newWordsIfMastered(s){ const before=learnedWordSet(s.id); let n=0; islandWordSet(s).forEach(w=>{ if(!before.has(w)) n++; }); return n; }
+
+function scheduleNext(s){ const d=new Date(); d.setDate(d.getDate()+(BOX_DAYS[s.box]||0)); s.next=d.toISOString().slice(0,10); }
+function applyResult(s, good){
+  s.box = good ? Math.min(5,(s.box||1)+1) : 1;
+  scheduleNext(s);
+  if((s.box||1)>=5 && !s.mastered){ const n=newWordsIfMastered(s); s.mastered=true; celebrateMastery(n); }
+}
+let lastLearned=0;
+function celebrateMastery(n){ toast("🎉 Island mastered! +"+n+" word"+(n===1?"":"s")); }
+function toggleMastered(id){
+  const s=DB.islands.find(x=>x.id===id); if(!s) return;
+  if(!s.mastered){ const n=newWordsIfMastered(s); s.mastered=true; if((s.box||1)<5){ s.box=5; scheduleNext(s); } toast("✓ Banked +"+n+" word"+(n===1?"":"s")); }
+  else { s.mastered=false; if((s.box||1)>=5){ s.box=4; scheduleNext(s); } toast("Removed from mastered"); }
+  saveDB(); renderSentenceList(); renderToday();
+}
+
+function rolloverDay(){
+  const t = todayStr();
+  if(DB.stats.lastActive){ const d = daysBetween(DB.stats.lastActive, t); if(d>=2){ DB.stats.streak = 0; } }
+  if(DB.today.date !== t){ DB.today = {date:t, islands:false, listen:false, recall:false, grammar:false}; }
+}
+function markActivityStreak(){
+  const t = todayStr();
+  if(DB.stats.lastActive !== t){
+    const prev = DB.stats.lastActive;
+    if(prev && daysBetween(prev,t)===1){ DB.stats.streak += 1; } else { DB.stats.streak = 1; }
+    DB.stats.lastActive = t;
+  }
+}
+function markToday(key){
+  rolloverDay();
+  if(!DB.today[key]){ DB.today[key]=true; markActivityStreak(); saveDB(); renderToday(); }
+}
+
+/* ============ Seed: 8 Q&A islands (ABOUT WORK rows 1–16) + grammar ============ */
+function seedDB(){
+  const isl=(qEn,aEn,qEs,aEs)=>({id:uid(),cat:"Work",qEn,aEn,qEs,aEs,box:1,next:todayStr(),added:todayStr()});
+  const islands = [
+    isl("What is your job?",
+        "I am an online coach that helps people prepare for bodybuilding in both the amateur and professional divisions worldwide.",
+        "¿Cuál es tu trabajo?",
+        "Soy un entrenador online que ayuda a personas a prepararse para el culturismo tanto en la división amateur como en la profesional a nivel mundial."),
+    isl("What is the name of your business?",
+        "Our business name is 'Flex Success'. We called it this because we wanted to teach people how to be flexible with their nutrition.",
+        "¿Cuál es el nombre de su negocio?",
+        'Nuestro nombre comercial es "Flex Success". Lo llamamos así porque queríamos enseñar a la gente a ser flexible con su alimentación.'),
+    isl("How long have you had your business?",
+        "The business started around twelve years ago.",
+        "¿Cuánto tiempo lleva usted con su negocio?",
+        "El negocio comenzó hace unos doce años."),
+    isl("Do you work online or in person?",
+        "I work online but sometimes I go to the competitions in person as well.",
+        "¿Trabajas online o presencialmente?",
+        "Trabajo en línea, pero a veces también asisto a las competiciones en persona."),
+    isl("Do you work alone?",
+        "No, I don't work alone, I work in a team of five people.",
+        "¿Trabajas solo/a?",
+        "No, no trabajo solo, trabajo en un equipo de cinco personas."),
+    isl("Who do you work with?",
+        "The five people I work with are my wife, who is the business manager, two coaches who do the same as me, and we have one assistant.",
+        "¿Con quién trabajas?",
+        "Las cinco personas con las que trabajo son mi esposa, que es la gerente comercial, dos entrenadores que hacen lo mismo que yo y tenemos un asistente."),
+    isl("Is your wife also a coach?",
+        "My wife was a coach in the past but now she manages the business.",
+        "¿Tu esposa también es entrenadora?",
+        "Mi esposa fue entrenadora en el pasado, pero ahora administra el negocio."),
+    isl("How many coaches work in your business?",
+        "We have three coaches including myself.",
+        "¿Cuántos entrenadores trabajan en su empresa?",
+        "Tenemos tres entrenadores, incluyéndome a mí.")
+  ];
+  const grammar = [
+    {id:uid(),week:1,title:"Ser vs Estar (the basics)",
+     exp:"Use SER for identity and permanent traits (who/what something is). Use ESTAR for temporary states, feelings and location (how/where something is).",
+     ex:[{es:"Soy entrenador.",en:"I am a coach. (identity)"},
+         {es:"Estoy cansado.",en:"I am tired. (temporary state)"},
+         {es:"Estoy en el gimnasio.",en:"I am at the gym. (location)"}]},
+    {id:uid(),week:1,title:"Present tense: regular -AR verbs",
+     exp:"Drop -ar and add: -o, -as, -a, -amos, -áis, -an. This covers many everyday verbs (trabajar, ayudar, entrenar…).",
+     ex:[{es:"Yo trabajo, tú trabajas, él trabaja.",en:"I work, you work, he works."},
+         {es:"Ayudamos a muchas personas.",en:"We help many people."},
+         {es:"Ellos entrenan cada día.",en:"They train every day."}]}
+  ];
+  return {islands, grammar, settings:{rate:0.9,voiceURI:"",ignoreAccents:true},
+    stats:{streak:0,lastActive:null,reps:{},recall:{c:0,t:0}},
+    today:{date:todayStr(),islands:false,listen:false,recall:false,grammar:false}};
+}
+
+/* ============ Speech ============ */
+let voices=[];
+function loadVoices(){ voices = speechSynthesis.getVoices()||[]; populateVoiceSelect(); }
+if("speechSynthesis" in window){ speechSynthesis.onvoiceschanged = loadVoices; loadVoices(); }
+function spanishVoices(){ return voices.filter(v=>/^es(-|_|$)/i.test(v.lang)); }
+function pickVoice(){ const want=DB.settings.voiceURI; if(want){ const v=voices.find(v=>v.voiceURI===want); if(v) return v; } const es=spanishVoices(); return es[0]||null; }
+function speak(text, rate, lang){
+  if(!("speechSynthesis" in window) || !text) return Promise.resolve();
+  return new Promise(res=>{
+    try{ speechSynthesis.cancel(); }catch(e){}
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang = lang || "es-ES"; u.rate = rate||DB.settings.rate||0.9;
+    if((lang||"es-ES").startsWith("es")){ const v=pickVoice(); if(v) u.voice=v; }
+    u.onend=()=>res(); u.onerror=()=>res();
+    speechSynthesis.speak(u);
+  });
+}
+
+/* ============ Helpers ============ */
+const $ = s=>document.querySelector(s);
+const $$ = s=>Array.from(document.querySelectorAll(s));
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
+function openModal(id){ $("#"+id).classList.add("show"); }
+function closeModal(el){ el.classList.remove("show"); }
+$$("[data-close]").forEach(b=>b.onclick=e=>closeModal(e.target.closest(".modal-bg")));
+$$(".modal-bg").forEach(m=>m.addEventListener("click",e=>{ if(e.target===m) closeModal(m); }));
+function esc(t){ return (t||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function categories(){ const set=new Set(DB.islands.map(s=>s.cat).filter(Boolean)); ["Work","Personal Interests","Food","Travel"].forEach(c=>set.add(c)); return Array.from(set); }
+
+/* ============ Navigation ============ */
+function showView(v){
+  $$(".view").forEach(x=>x.classList.remove("active"));
+  $("#view-"+v).classList.add("active");
+  $$("nav.tabs button").forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  if(v==="islands"){ renderSentenceList(); }
+  if(v==="listen"){ buildListenCategorySelect(); }
+  if(v==="recall"){ startRecall(); }
+  if(v==="grammar"){ renderGrammar(); }
+  if(v==="today"){ renderToday(); }
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$$("nav.tabs button").forEach(b=>b.onclick=()=>showView(b.dataset.view));
+$$("[data-goto]").forEach(b=>b.onclick=()=>showView(b.dataset.goto));
+
+/* ============ TODAY ============ */
+function dueIslands(){ const t=todayStr(); return DB.islands.filter(s=>!s.next || s.next<=t); }
+function renderToday(){
+  rolloverDay();
+  $("#streakNum").textContent = DB.stats.streak;
+  const due = dueIslands().length;
+  $("#dueCount").textContent = due; $("#dueCount2").textContent = due;
+  $("#stMastered").textContent = DB.islands.filter(s=>s.mastered).length;
+  $("#stTotal").textContent = DB.islands.length;
+  $("#stLearning").textContent = DB.islands.filter(s=>!s.mastered).length;
+  $("#stReviews").textContent = DB.stats.reps[todayStr()]||0;
+  [["islands","ck-islands"],["listen","ck-listen"],["recall","ck-recall"],["grammar","ck-grammar"]]
+    .forEach(([k,id])=>$("#"+id).classList.toggle("done",!!DB.today[k]));
+  renderVocab();
+  if(DB.islands.length){
+    const s = DB.islands[(new Date().getDate()) % DB.islands.length];
+    $("#dailyQ").textContent = "“"+s.qEs+"”";
+    $("#dailyA").textContent = s.aEs;
+    $("#dailyEn").textContent = s.qEn+" — "+s.aEn;
+  }
+}
+function fmt(n){ return n.toLocaleString("en-US"); }
+function renderVocab(){
+  const learned = learnedCount();
+  const corpus = corpusWordSet().size;
+  const masteredN = DB.islands.filter(s=>s.mastered).length;
+  const base = Math.floor(learned/MILESTONE)*MILESTONE;
+  const next = base + MILESTONE;
+  const pct = Math.min(100, ((learned-base)/MILESTONE)*100);
+  $("#vocabCount").textContent = fmt(learned);
+  $("#vocabTarget").textContent = fmt(next);
+  $("#vocabFill").style.width = pct+"%";
+  $("#vocabToGo").textContent = fmt(next-learned)+" words to "+fmt(next);
+  $("#vocabCta").textContent = masteredN+" island"+(masteredN===1?"":"s")+" mastered · "+fmt(corpus-learned)+" words still in your islands →";
+  // milestone pips
+  const levels = Math.max(3, Math.floor(learned/MILESTONE)+3);
+  let h="";
+  for(let i=1;i<=levels;i++){
+    const target=i*MILESTONE; const done=learned>=target; const curr=(target===next);
+    h+='<span class="pip'+(done?' done':'')+(curr?' curr':'')+'">'+fmt(target)+'</span>';
+  }
+  $("#milePips").innerHTML=h;
+}
+
+/* ============ ISLANDS browse + CRUD ============ */
+let activeCat = "All";
+function renderCatFilters(){
+  const wrap=$("#catFilters"); wrap.innerHTML="";
+  ["All",...categories()].forEach(c=>{
+    const b=document.createElement("button"); b.className="chip"+(c===activeCat?" active":"");
+    const count = c==="All"?DB.islands.length:DB.islands.filter(s=>s.cat===c).length;
+    b.textContent = c+" ("+count+")";
+    b.onclick=()=>{ activeCat=c; renderSentenceList(); };
+    wrap.appendChild(b);
+  });
+}
+function boxDots(box){ let h='<div class="box-dots">'; for(let i=1;i<=5;i++) h+='<i class="'+(i<=box?"on":"")+'"></i>'; return h+'</div>'; }
+function renderSentenceList(){
+  renderCatFilters();
+  const list=$("#sentenceList"); list.innerHTML="";
+  let items = DB.islands.slice();
+  if(activeCat!=="All") items = items.filter(s=>s.cat===activeCat);
+  if(!items.length){ list.innerHTML='<div class="empty"><div class="big">🏝️</div>No islands here yet. Add your first one.</div>'; return; }
+  items.forEach(s=>{
+    const d=document.createElement("div"); d.className="icard";
+    d.innerHTML=`
+      <div class="lang-block en">
+        <div class="lang-tag">🇬🇧 English</div>
+        <div class="qa-q"><span class="lbl">Q</span><span>${esc(s.qEn)}</span></div>
+        <div class="qa-a"><span class="lbl">A</span><span>${esc(s.aEn)}</span></div>
+      </div>
+      <div class="lang-block es">
+        <div class="lang-tag">🇪🇸 Español</div>
+        <div class="qa-q"><span class="lbl">P</span><span>${esc(s.qEs)}</span></div>
+        <div class="qa-a"><span class="lbl">R</span><span>${esc(s.aEs)}</span></div>
+      </div>
+      <div class="foot">
+        <span class="tag">${esc(s.cat||"—")}</span>
+        ${s.mastered?'<span class="badge-master">✓ Mastered</span>':boxDots(s.box||1)}
+        <span class="muted" style="font-size:11px">${islandWordSet(s).size} words</span>
+        <span class="sp">
+          <button class="btn icon knowit ${s.mastered?'on':''}" data-know="${s.id}" title="Mark as known perfectly">${s.mastered?'✓ Known':'Know it?'}</button>
+          <button class="btn icon" data-speakq="${s.id}" title="Hear question">🔊 Q</button>
+          <button class="btn icon" data-speaka="${s.id}" title="Hear answer">🔊 A</button>
+          <button class="btn icon" data-edit="${s.id}" title="Edit">✎</button>
+        </span>
+      </div>`;
+    list.appendChild(d);
+  });
+  list.querySelectorAll("[data-know]").forEach(b=>b.onclick=()=>toggleMastered(b.dataset.know));
+  list.querySelectorAll("[data-speakq]").forEach(b=>b.onclick=()=>{ const s=DB.islands.find(x=>x.id===b.dataset.speakq); speak(s.qEs); });
+  list.querySelectorAll("[data-speaka]").forEach(b=>b.onclick=()=>{ const s=DB.islands.find(x=>x.id===b.dataset.speaka); speak(s.aEs); });
+  list.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>openSentenceModal(b.dataset.edit));
+}
+
+let editingId=null;
+function refreshCatOptions(){ $("#catOptions").innerHTML=categories().map(c=>`<option value="${esc(c)}">`).join(""); }
+function openSentenceModal(id){
+  refreshCatOptions(); editingId=id||null;
+  if(id){
+    const s=DB.islands.find(x=>x.id===id);
+    $("#sentModalTitle").textContent="Edit island";
+    $("#fqEn").value=s.qEn; $("#faEn").value=s.aEn; $("#fqEs").value=s.qEs; $("#faEs").value=s.aEs; $("#fCat").value=s.cat||"";
+    $("#sentDelete").style.display="inline-flex";
+  }else{
+    $("#sentModalTitle").textContent="New island";
+    $("#fqEn").value=""; $("#faEn").value=""; $("#fqEs").value=""; $("#faEs").value=""; $("#fCat").value=activeCat!=="All"?activeCat:"Work";
+    $("#sentDelete").style.display="none";
+  }
+  openModal("modalSentence"); setTimeout(()=>$("#fqEn").focus(),50);
+}
+$("#sentSave").onclick=()=>{
+  const qEn=$("#fqEn").value.trim(), aEn=$("#faEn").value.trim(), qEs=$("#fqEs").value.trim(), aEs=$("#faEs").value.trim(), cat=$("#fCat").value.trim()||"Work";
+  if(!qEs||!aEs){ toast("At least add the Spanish question and answer"); return; }
+  if(editingId){ const s=DB.islands.find(x=>x.id===editingId); Object.assign(s,{qEn,aEn,qEs,aEs,cat}); }
+  else { DB.islands.push({id:uid(),qEn,aEn,qEs,aEs,cat,box:1,next:todayStr(),added:todayStr()}); }
+  saveDB(); closeModal($("#modalSentence")); renderSentenceList(); renderToday(); toast(editingId?"Saved":"Island added 🏝️");
+};
+$("#sentDelete").onclick=()=>{ if(!editingId) return; DB.islands=DB.islands.filter(x=>x.id!==editingId); saveDB(); closeModal($("#modalSentence")); renderSentenceList(); renderToday(); toast("Deleted"); };
+$("#addSentence").onclick=()=>openSentenceModal(null);
+$("#fabAdd").onclick=()=>openSentenceModal(null);
+
+/* ============ PRACTICE (SRS) ============ */
+let practiceQueue=[], practiceRevealed=false;
+function startPractice(){
+  practiceQueue = dueIslands().slice().sort(()=>Math.random()-0.5);
+  if(!practiceQueue.length){ toast("Nothing due — come back later or add more!"); return; }
+  $("#browseArea").style.display="none"; $("#practiceArea").style.display="block";
+  $("#startPractice").style.display="none"; $("#addSentence").style.display="none";
+  nextPracticeCard();
+}
+function nextPracticeCard(){
+  practiceRevealed=false;
+  if(!practiceQueue.length){ endPractice(true); return; }
+  const s=practiceQueue[0];
+  $("#pQline").textContent="Answer this in Spanish";
+  $("#pPrompt").innerHTML = esc(s.qEs)+'<span class="qen">'+esc(s.qEn)+'</span>';
+  $("#pHint").style.display="block";
+  $("#pAnswer").innerHTML="";
+  $("#pReveal").style.display="flex"; $("#pRate").style.display="none";
+  $("#pPos").textContent = practiceQueue.length;
+}
+function revealCard(){
+  const s=practiceQueue[0]; practiceRevealed=true;
+  $("#pHint").style.display="none";
+  $("#pAnswer").innerHTML='<div class="aes">'+esc(s.aEs)+'</div><div class="aen">'+esc(s.aEn)+'</div>';
+  $("#pReveal").style.display="none"; $("#pRate").style.display="flex";
+  speak(s.aEs);
+}
+function gradeCard(good){
+  const s=practiceQueue.shift();
+  applyResult(s, good);
+  bumpRep(); saveDB(); nextPracticeCard();
+}
+function bumpRep(){ const t=todayStr(); DB.stats.reps[t]=(DB.stats.reps[t]||0)+1; }
+function endPractice(finished){
+  $("#practiceArea").style.display="none"; $("#browseArea").style.display="block";
+  $("#startPractice").style.display="inline-flex"; $("#addSentence").style.display="inline-flex";
+  renderSentenceList(); renderToday();
+  if(finished){ markToday("islands"); toast("Island practice done ✓"); }
+}
+$("#startPractice").onclick=startPractice;
+$("#pShow").onclick=revealCard;
+$("#pPrompt").onclick=()=>{ if(!practiceRevealed) revealCard(); };
+$("#pSpeak").onclick=()=>{ const s=practiceQueue[0]; if(s) speak(s.qEs); };
+$("#pSpeak2").onclick=()=>{ const s=practiceQueue[0]; if(s) speak(s.aEs); };
+$("#rateGood").onclick=()=>{ markToday("islands"); gradeCard(true); };
+$("#rateAgain").onclick=()=>{ markToday("islands"); gradeCard(false); };
+$("#endPractice").onclick=()=>endPractice(false);
+
+/* ============ LISTEN ============ */
+const player={steps:[],i:0,playing:false,repeats:2,rate:0.9,gap:1200,includeEn:false,includeQ:true,islands:[],_dirty:true};
+function buildListenCategorySelect(){
+  const sel=$("#lCategory"); const cur=sel.value;
+  sel.innerHTML='<option value="__all">All islands</option>'+categories().map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
+  if(cur) sel.value=cur;
+  buildListenList();
+}
+function listenPool(){ const c=$("#lCategory").value; return (c&&c!=="__all") ? DB.islands.filter(s=>s.cat===c) : DB.islands.slice(); }
+function buildListenList(){
+  player.islands=listenPool();
+  const list=$("#listenList"); list.innerHTML="";
+  if(!player.islands.length){ list.innerHTML='<div class="empty">No islands in this category.</div>'; return; }
+  player.islands.forEach((s,idx)=>{
+    const d=document.createElement("div"); d.className="ll-item"; d.dataset.sid=s.id;
+    d.innerHTML=`<span class="num">${idx+1}</span><span>${esc(s.qEs)}</span>`;
+    d.onclick=()=>startListenAt(idx);
+    list.appendChild(d);
+  });
+}
+function buildSteps(){
+  player.steps=[];
+  player.islands.forEach(s=>{
+    if(player.includeEn){ player.steps.push({sid:s.id,text:s.aEn,lang:"en-US"}); }
+    for(let r=0;r<player.repeats;r++){
+      if(player.includeQ) player.steps.push({sid:s.id,text:s.qEs,lang:"es-ES",kind:"q"});
+      player.steps.push({sid:s.id,text:s.aEs,lang:"es-ES",kind:"a"});
+    }
+  });
+}
+function highlightListen(sid){
+  $$("#listenList .ll-item").forEach(x=>x.classList.toggle("playing",x.dataset.sid===sid));
+  const s=DB.islands.find(x=>x.id===sid);
+  if(s){ $("#nowPlaying").innerHTML='<div class="nowq">'+esc(s.qEs)+'</div><div class="nowa">'+esc(s.aEs)+'</div><div class="nowen">'+esc(s.aEn)+'</div>'; }
+}
+function setPlayIcon(){ $("#lPlay").textContent = player.playing ? "⏸" : "▶"; }
+function listenTick(){
+  if(!player.playing) return;
+  if(player.i>=player.steps.length){ player.i=0; }
+  const step=player.steps[player.i];
+  highlightListen(step.sid);
+  $("#progFill").style.width = ((player.i/player.steps.length)*100)+"%";
+  speak(step.text, player.rate, step.lang).then(()=>{
+    if(!player.playing) return;
+    setTimeout(()=>{ player.i++; listenTick(); }, player.gap);
+  });
+}
+function startListen(){
+  if(!player.islands.length){ toast("No islands to play"); return; }
+  if(!player.steps.length || player._dirty){ buildSteps(); player._dirty=false; }
+  player.playing=true; setPlayIcon(); markToday("listen"); listenTick();
+}
+function pauseListen(){ player.playing=false; setPlayIcon(); try{speechSynthesis.cancel();}catch(e){} }
+function startListenAt(idx){
+  buildSteps(); player._dirty=false;
+  const sid=player.islands[idx].id;
+  player.i=player.steps.findIndex(st=>st.sid===sid); if(player.i<0) player.i=0;
+  player.playing=true; setPlayIcon(); markToday("listen"); listenTick();
+}
+function jumpSentence(dir){
+  if(!player.steps.length) buildSteps();
+  const ids=player.islands.map(s=>s.id);
+  const curSid = player.steps[player.i] ? player.steps[player.i].sid : ids[0];
+  let pos = ids.indexOf(curSid); pos = (pos+dir+ids.length)%ids.length;
+  const sid=ids[pos];
+  player.i=player.steps.findIndex(st=>st.sid===sid); if(player.i<0) player.i=0;
+  try{speechSynthesis.cancel();}catch(e){}
+  if(player.playing) listenTick(); else highlightListen(sid);
+}
+$("#lPlay").onclick=()=>{ player.playing?pauseListen():startListen(); };
+$("#lNext").onclick=()=>jumpSentence(1);
+$("#lPrev").onclick=()=>jumpSentence(-1);
+$("#lCategory").onchange=()=>{ pauseListen(); player.i=0; player._dirty=true; buildListenList(); player.steps=[]; $("#progFill").style.width="0"; };
+$("#lRepeats").oninput=e=>{ player.repeats=+e.target.value; $("#repVal").textContent=e.target.value; player._dirty=true; };
+$("#lRate").oninput=e=>{ player.rate=+e.target.value; $("#rateVal").textContent=(+e.target.value).toFixed(2); };
+$("#lGap").oninput=e=>{ player.gap=+e.target.value*1000; $("#gapVal").textContent=(+e.target.value).toFixed(1); };
+$("#lIncludeEn").onchange=e=>{ player.includeEn=e.target.checked; player._dirty=true; };
+$("#lQuestion").onchange=e=>{ player.includeQ=e.target.checked; player._dirty=true; };
+
+/* ============ RECALL ============ */
+let recCurrent=null, recAnswered=false;
+function recallPool(){ const p=$("#recPool").value; let pool=p==="due"?dueIslands():DB.islands.slice(); if(!pool.length) pool=DB.islands.slice(); return pool; }
+function startRecall(){ $("#recCorrect").textContent=DB.stats.recall.c; $("#recTotal").textContent=DB.stats.recall.t; updatePct(); nextRecall(); }
+function updatePct(){ const r=DB.stats.recall; $("#recPct").textContent=(r.t?Math.round(r.c/r.t*100):0)+"%"; }
+function nextRecall(){
+  recAnswered=false;
+  const pool=recallPool();
+  if(!pool.length){ $("#recPrompt").textContent="Add some islands first 🏝️"; $("#recCtx").textContent=""; return; }
+  recCurrent=pool[Math.floor(Math.random()*pool.length)];
+  const mode=$("#recMode").value;
+  let dir = mode==="mixed" ? (Math.random()<0.5?"es-en":"en-es") : mode;
+  recCurrent._dir=dir;
+  if(dir==="en-es"){
+    $("#recDir").textContent="English answer → Spanish";
+    $("#recCtx").innerHTML="Question: <b>"+esc(recCurrent.qEs)+"</b> ("+esc(recCurrent.qEn)+")";
+    $("#recPrompt").textContent=recCurrent.aEn;
+    $("#recInput").placeholder="Type your answer in Spanish…";
+    $("#recHear").style.display="none";
+  } else {
+    $("#recDir").textContent="Spanish answer → English";
+    $("#recCtx").innerHTML="Question: <b>"+esc(recCurrent.qEs)+"</b>";
+    $("#recPrompt").textContent=recCurrent.aEs;
+    $("#recInput").placeholder="Type the meaning in English…";
+    $("#recHear").style.display="inline-flex";
+  }
+  $("#recInput").value=""; $("#recInput").disabled=false;
+  $("#recVerdict").className="verdict";
+  setTimeout(()=>$("#recInput").focus(),50);
+}
+function normalize(t){
+  t=(t||"").toLowerCase().trim();
+  if(DB.settings.ignoreAccents){ t=t.normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+  t=t.replace(/[¿?¡!.,;:"'\u201c\u201d\u2018\u2019()\-]/g,"").replace(/\s+/g," ").trim();
+  return t;
+}
+function checkRecall(){
+  if(recAnswered || !recCurrent) return;
+  const dir=recCurrent._dir;
+  const target = dir==="en-es"?recCurrent.aEs:recCurrent.aEn;
+  showVerdict(normalize($("#recInput").value)===normalize(target), target);
+}
+function showVerdict(ok,target){
+  recAnswered=true; $("#recInput").disabled=true;
+  DB.stats.recall.t++; if(ok) DB.stats.recall.c++;
+  applyResult(recCurrent, ok);
+  bumpRep(); markToday("recall"); saveDB();
+  $("#recCorrect").textContent=DB.stats.recall.c; $("#recTotal").textContent=DB.stats.recall.t; updatePct();
+  const v=$("#recVerdict"); v.className="verdict show "+(ok?"ok":"no");
+  $("#recVh").innerHTML = ok?"✓ Correct!":"✗ Not quite";
+  $("#recAnswer").textContent=target;
+  $("#recMarkRight").style.display = ok?"none":"inline-flex";
+  if(recCurrent._dir==="en-es") speak(recCurrent.aEs);
+}
+$("#recCheck").onclick=checkRecall;
+$("#recInput").addEventListener("keydown",e=>{ if((e.ctrlKey||e.metaKey)&&e.key==="Enter"){ checkRecall(); } });
+$("#recNext").onclick=nextRecall;
+$("#recSkip").onclick=nextRecall;
+$("#recHear").onclick=()=>{ if(recCurrent) speak(recCurrent.aEs); };
+$("#recMarkRight").onclick=()=>{
+  DB.stats.recall.c++; updatePct(); $("#recCorrect").textContent=DB.stats.recall.c;
+  recCurrent.box=Math.min(5,(recCurrent.box||1)+1);
+  scheduleNext(recCurrent);
+  if(recCurrent.box>=5 && !recCurrent.mastered){ const n=newWordsIfMastered(recCurrent); recCurrent.mastered=true; celebrateMastery(n); }
+  saveDB(); $("#recVh").innerHTML="✓ Counted as correct"; $("#recVerdict").className="verdict show ok"; $("#recMarkRight").style.display="none";
+};
+$("#recMode").onchange=nextRecall;
+$("#recPool").onchange=nextRecall;
+
+/* ============ GRAMMAR ============ */
+function currentMaxWeek(){ return DB.grammar.reduce((m,g)=>Math.max(m,g.week||1),1); }
+function renderGrammar(){
+  $("#nextWeekNum").textContent = currentMaxWeek()+1;
+  const wrap=$("#grammarList"); wrap.innerHTML="";
+  const weeks=[...new Set(DB.grammar.map(g=>g.week||1))].sort((a,b)=>b-a);
+  const maxW=currentMaxWeek();
+  if(!weeks.length){ wrap.innerHTML='<div class="empty"><div class="big">📐</div>No rules yet. Add your first two for this week.</div>'; return; }
+  weeks.forEach(wk=>{
+    const head=document.createElement("div"); head.className="gweek";
+    head.innerHTML=`<h3>Week ${wk}</h3>`+(wk===maxW?'<span class="badge">This week · review daily</span>':"");
+    wrap.appendChild(head);
+    DB.grammar.filter(g=>(g.week||1)===wk).forEach(g=>{
+      const d=document.createElement("div"); d.className="grule";
+      d.innerHTML=`<h4>${esc(g.title)} <button class="btn icon sm" data-gedit="${g.id}" style="margin-left:auto;font-size:13px">✎</button></h4>
+        <div class="exp">${esc(g.exp)}</div>
+        ${(g.ex||[]).map(e=>`<div class="gex"><button class="btn icon" data-gspeak="${esc(e.es)}" style="padding:6px;font-size:13px">🔊</button><div><div class="gx-es">${esc(e.es)}</div><div class="gx-en">${esc(e.en)}</div></div></div>`).join("")}`;
+      wrap.appendChild(d);
+    });
+  });
+  wrap.querySelectorAll("[data-gspeak]").forEach(b=>b.onclick=()=>speak(b.dataset.gspeak));
+  wrap.querySelectorAll("[data-gedit]").forEach(b=>b.onclick=()=>openGrammarModal(b.dataset.gedit));
+  markToday("grammar");
+}
+let editingGram=null;
+function exRow(es="",en=""){
+  const div=document.createElement("div"); div.className="row2";
+  div.innerHTML=`<input class="gx-in-es" placeholder="Spanish example" value="${esc(es)}">
+    <input class="gx-in-en" placeholder="English" value="${esc(en)}">
+    <button class="btn icon" title="Remove">✕</button>`;
+  div.querySelector("button").onclick=()=>div.remove();
+  return div;
+}
+function openGrammarModal(id){
+  editingGram=id||null; const list=$("#exList"); list.innerHTML="";
+  if(id){
+    const g=DB.grammar.find(x=>x.id===id);
+    $("#gTitle").value=g.title; $("#gExp").value=g.exp; $("#gWeek").value=g.week||1;
+    (g.ex||[]).forEach(e=>list.appendChild(exRow(e.es,e.en))); $("#gramDelete").style.display="inline-flex";
+  }else{
+    $("#gTitle").value=""; $("#gExp").value=""; $("#gWeek").value=currentMaxWeek(); list.appendChild(exRow()); $("#gramDelete").style.display="none";
+  }
+  openModal("modalGrammar");
+}
+$("#addEx").onclick=()=>$("#exList").appendChild(exRow());
+$("#gramSave").onclick=()=>{
+  const title=$("#gTitle").value.trim(), exp=$("#gExp").value.trim(), week=+$("#gWeek").value||1;
+  if(!title){ toast("Add a title"); return; }
+  const ex=Array.from($("#exList").querySelectorAll(".row2")).map(r=>({es:r.querySelector(".gx-in-es").value.trim(),en:r.querySelector(".gx-in-en").value.trim()})).filter(e=>e.es);
+  if(editingGram){ const g=DB.grammar.find(x=>x.id===editingGram); g.title=title; g.exp=exp; g.week=week; g.ex=ex; }
+  else { DB.grammar.push({id:uid(),title,exp,week,ex}); }
+  saveDB(); closeModal($("#modalGrammar")); renderGrammar(); toast(editingGram?"Saved":"Rule added 📐");
+};
+$("#gramDelete").onclick=()=>{ if(!editingGram)return; DB.grammar=DB.grammar.filter(x=>x.id!==editingGram); saveDB(); closeModal($("#modalGrammar")); renderGrammar(); };
+$("#addGrammar").onclick=()=>openGrammarModal(null);
+$("#newWeek").onclick=()=>{ openGrammarModal(null); $("#gWeek").value=currentMaxWeek()+1; };
+
+/* ============ SETTINGS ============ */
+function populateVoiceSelect(){
+  const sel=$("#setVoice"); if(!sel) return; const es=spanishVoices();
+  sel.innerHTML = es.length ? es.map(v=>`<option value="${v.voiceURI}">${v.name} (${v.lang})</option>`).join("") : '<option value="">No Spanish voice found on this device</option>';
+  if(DB && DB.settings.voiceURI) sel.value=DB.settings.voiceURI;
+}
+$("#btnSettings").onclick=()=>{ populateVoiceSelect(); $("#setRate").value=DB.settings.rate; $("#setRateVal").textContent=DB.settings.rate; $("#setAccents").checked=DB.settings.ignoreAccents; openModal("modalSettings"); };
+$("#setRate").oninput=e=>$("#setRateVal").textContent=(+e.target.value).toFixed(2);
+$("#setSave").onclick=()=>{
+  DB.settings.voiceURI=$("#setVoice").value; DB.settings.rate=+$("#setRate").value; DB.settings.ignoreAccents=$("#setAccents").checked;
+  player.rate=DB.settings.rate; $("#lRate").value=DB.settings.rate; $("#rateVal").textContent=DB.settings.rate.toFixed(2);
+  saveDB(); closeModal($("#modalSettings")); toast("Settings saved");
+};
+
+/* ============ BACKUP / EXPORT ============ */
+$("#btnBackup").onclick=()=>openModal("modalBackup");
+function download(filename,text,type){
+  const blob=new Blob([text],{type:type||"text/plain"}); const url=URL.createObjectURL(blob);
+  const a=document.createElement("a"); a.href=url; a.download=filename; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },500);
+}
+$("#doExport").onclick=()=>{ download("mis-islas-backup-"+todayStr()+".json", JSON.stringify(DB,null,2), "application/json"); toast("Exported"); };
+$("#doImportBtn").onclick=()=>$("#importFile").click();
+$("#importFile").onchange=e=>{
+  const f=e.target.files[0]; if(!f) return; const r=new FileReader();
+  r.onload=()=>{ try{ const data=JSON.parse(r.result); if(!data.islands && !data.sentences) throw 0; DB=data; loadDefaults(); saveDB(); toast("Imported ✓"); showView("today"); }catch(err){ toast("Invalid file"); } };
+  r.readAsText(f);
+};
+$("#doAudioScript").onclick=()=>{
+  let txt="MIS ISLAS — Spanish listening script\nGenerated "+todayStr()+"\n\nPaste into a text-to-speech tool, set a Spanish voice (~0.9x speed), export as MP3. Each answer repeats with pauses for shadowing.\n\n";
+  const byCat={}; DB.islands.forEach(s=>{ (byCat[s.cat]=byCat[s.cat]||[]).push(s); });
+  Object.keys(byCat).forEach(cat=>{
+    txt+="\n=== "+cat.toUpperCase()+" ===\n\n";
+    byCat[cat].forEach((s,i)=>{
+      txt+=(i+1)+". "+s.qEn+"\n";
+      txt+=s.qEs+" ...\n";
+      txt+=s.aEs+" ... "+s.aEs+" ...\n\n";
+    });
+  });
+  download("mis-islas-audio-script-"+todayStr()+".txt", txt); toast("Script downloaded");
+};
+
+/* ============ WORDS modal ============ */
+let wordsTab="learned";
+function openWordsModal(){ wordsTab="learned"; renderWordsModal(); openModal("modalWords"); }
+function renderWordsModal(){
+  const learned = learnedWordSet();
+  const corpus = corpusWordSet();
+  const todo = [...corpus].filter(w=>!learned.has(w));
+  $("#wtLearned").classList.toggle("active",wordsTab==="learned");
+  $("#wtTodo").classList.toggle("active",wordsTab==="todo");
+  $("#wtLearned").textContent="Learned ("+learned.size+")";
+  $("#wtTodo").textContent="Still to bank ("+todo.length+")";
+  const next=(Math.floor(learned.size/MILESTONE)+1)*MILESTONE;
+  $("#wordsSummary").innerHTML="<b>"+fmt(learned.size)+"</b> unique Spanish words banked from mastered islands · <b>"+fmt(next-learned.size)+"</b> more to reach "+fmt(next)+".";
+  const arr=(wordsTab==="learned"?[...learned]:todo).sort((a,b)=>a.localeCompare(b,"es"));
+  const body=$("#wordsBody");
+  if(!arr.length){ body.innerHTML='<div class="empty">'+(wordsTab==="learned"?"No words yet — master an island to bank its words. Use the “Know it?” button on a card, or get it right enough times in Practice/Recall.":"Every word in your islands is banked. 🎉")+'</div>'; return; }
+  body.innerHTML='<div class="wordchips">'+arr.map(w=>'<span class="wchip'+(wordsTab==="todo"?" todo":"")+'">'+esc(w)+'</span>').join("")+'</div>';
+}
+$("#vocabHero").onclick=openWordsModal;
+$("#wtLearned").onclick=()=>{ wordsTab="learned"; renderWordsModal(); };
+$("#wtTodo").onclick=()=>{ wordsTab="todo"; renderWordsModal(); };
+
+/* ============ Init ============ */
+(async function init(){
+  await loadDB();
+  player.rate=DB.settings.rate||0.9; $("#lRate").value=player.rate; $("#rateVal").textContent=player.rate.toFixed(2);
+  renderToday();
+  if(!hasStore){ setTimeout(()=>toast("Note: persistent storage unavailable here — use ⇅ Export to save your work."),1200); }
+})();
+</script>
+</body>
+</html>
