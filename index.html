@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mis Islas · Spanish Language Islands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#f4ecdc; --sand-2:#efe5d1; --paper:#fbf6ec; --ink:#21302e; --ink-soft:#4a5b58;
+  --ocean:#0e5751; --ocean-deep:#093f3a; --ocean-light:#1c7d74; --foam:#bfe3dd;
+  --clay:#c5562f; --clay-soft:#e08a4f; --gold:#d9a441; --line:#dfd2b8;
+  --good:#2f8a5b; --bad:#bd3b3b; --shadow:0 10px 30px -12px rgba(9,63,58,.35);
+  --shadow-sm:0 4px 14px -8px rgba(9,63,58,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Mulish',system-ui,sans-serif;color:var(--ink);
+  background:var(--sand);
+  background-image:
+    radial-gradient(1200px 500px at 80% -10%, rgba(28,125,116,.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(197,86,47,.10), transparent 55%);
+  -webkit-font-smoothing:antialiased;line-height:1.5;padding-bottom:90px;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+
+header.top{padding:26px 0 14px;position:relative}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brand h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(28px,6vw,44px);letter-spacing:-.02em;color:var(--ocean-deep);line-height:.95}
+.brand h1 em{font-style:italic;color:var(--clay)}
+.brand .sub{font-size:13px;color:var(--ink-soft);font-weight:600;letter-spacing:.02em}
+.streak-pill{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);
+  padding:8px 14px;border-radius:999px;box-shadow:var(--shadow-sm);font-weight:800;color:var(--ocean-deep);font-size:15px}
+.streak-pill .flame{font-size:18px}
+.toolbar-mini{position:absolute;top:30px;right:0;display:flex;gap:8px}
+@media(max-width:560px){.toolbar-mini{position:static;margin-top:10px;justify-content:flex-end}}
+
+nav.tabs{display:flex;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:6px;
+  box-shadow:var(--shadow-sm);position:sticky;top:10px;z-index:20;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{flex:1;min-width:fit-content;border:none;background:transparent;font-family:'Mulish';font-weight:800;
+  font-size:14px;color:var(--ink-soft);padding:11px 12px;border-radius:11px;cursor:pointer;white-space:nowrap;
+  transition:all .18s;display:flex;align-items:center;gap:7px;justify-content:center}
+nav.tabs button .ic{font-size:16px}
+nav.tabs button:hover{color:var(--ocean-deep)}
+nav.tabs button.active{background:var(--ocean);color:#fff;box-shadow:0 6px 16px -8px var(--ocean-deep)}
+
+main{margin-top:22px}
+.view{display:none;animation:rise .4s ease both}
+.view.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+h2.section{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,4vw,30px);color:var(--ocean-deep);
+  letter-spacing:-.01em;margin-bottom:4px}
+.section-sub{color:var(--ink-soft);font-size:14px;margin-bottom:20px;max-width:62ch}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+
+.btn{font-family:'Mulish';font-weight:800;font-size:14px;border:none;border-radius:12px;padding:11px 18px;cursor:pointer;
+  transition:transform .12s,box-shadow .18s,background .18s;display:inline-flex;align-items:center;gap:8px}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--clay);color:#fff;box-shadow:0 8px 18px -10px var(--clay)}
+.btn.primary:hover{background:#b14a26}
+.btn.ocean{background:var(--ocean);color:#fff}
+.btn.ocean:hover{background:var(--ocean-deep)}
+.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ocean-deep)}
+.btn.ghost:hover{border-color:var(--ocean);background:#fff}
+.btn.sm{padding:8px 12px;font-size:13px;border-radius:10px}
+.btn.icon{padding:9px;border-radius:10px;background:transparent;border:1.5px solid var(--line);color:var(--ocean-deep);font-size:15px}
+.btn.icon:hover{border-color:var(--ocean);background:#fff}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+.today-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+@media(max-width:720px){.today-grid{grid-template-columns:1fr}}
+.checklist .item{display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px dashed var(--line)}
+.checklist .item:last-child{border-bottom:none}
+.check{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--line);flex:none;display:grid;place-items:center;
+  font-size:15px;color:transparent;transition:.2s}
+.item.done .check{background:var(--good);border-color:var(--good);color:#fff}
+.item .ci-title{font-weight:800;color:var(--ink)}
+.item .ci-desc{font-size:12.5px;color:var(--ink-soft)}
+.item.done .ci-title{color:var(--ink-soft)}
+.item .go{margin-left:auto}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:linear-gradient(160deg,var(--ocean),var(--ocean-deep));color:#fff;border-radius:14px;padding:16px}
+.stat.clay{background:linear-gradient(160deg,var(--clay-soft),var(--clay))}
+.stat .n{font-family:'Fraunces',serif;font-weight:900;font-size:34px;line-height:1}
+.stat .l{font-size:12px;font-weight:700;opacity:.9;margin-top:4px;letter-spacing:.03em;text-transform:uppercase}
+.daily-q{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--clay);line-height:1.4}
+.daily-a{font-family:'Fraunces',serif;font-size:18px;color:var(--ocean-deep);line-height:1.4;margin-top:6px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);
+  cursor:pointer;color:var(--ink-soft);transition:.15s}
+.chip.active{background:var(--ocean);border-color:var(--ocean);color:#fff}
+.chip:hover:not(.active){border-color:var(--ocean-light)}
+
+/* Q&A island card */
+.icard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:0;margin-bottom:12px;
+  box-shadow:var(--shadow-sm);overflow:hidden}
+.icard .lang-block{padding:14px 16px}
+.icard .lang-block.en{background:var(--sand-2)}
+.icard .lang-block.es{background:var(--paper)}
+.icard .lang-tag{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.icard .lang-block.es .lang-tag{color:var(--clay)}
+.qa-q{font-weight:800;color:var(--ink);font-size:14.5px;display:flex;gap:7px}
+.qa-q .lbl{color:var(--ocean-light);font-weight:900;flex:none}
+.icard .lang-block.es .qa-q{font-family:'Fraunces';font-weight:600;color:var(--ocean-deep);font-size:16px}
+.qa-a{color:var(--ink-soft);font-size:14px;margin-top:4px;display:flex;gap:7px}
+.qa-a .lbl{color:var(--clay-soft);font-weight:900;flex:none}
+.icard .lang-block.es .qa-a{color:var(--ink);font-size:15px}
+.icard .foot{display:flex;align-items:center;gap:10px;padding:10px 16px;border-top:1px solid var(--line);background:var(--paper)}
+.tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:6px;
+  background:var(--sand-2);color:var(--ocean-deep)}
+.box-dots{display:flex;gap:4px}
+.box-dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.box-dots i.on{background:var(--gold)}
+.icard .foot .sp{margin-left:auto;display:flex;gap:6px}
+
+.flash{background:linear-gradient(165deg,var(--paper),var(--sand-2));border:1px solid var(--line);border-radius:22px;
+  padding:34px 24px;text-align:center;box-shadow:var(--shadow);min-height:230px;display:flex;flex-direction:column;
+  justify-content:center;gap:14px;position:relative;overflow:hidden}
+.flash::before{content:"〜";position:absolute;font-size:160px;color:var(--foam);opacity:.4;right:-20px;bottom:-60px;font-family:'Fraunces'}
+.flash .qline{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--clay);position:relative}
+.flash .prompt{font-family:'Fraunces',serif;font-size:clamp(20px,4.5vw,26px);font-weight:600;color:var(--ocean-deep);position:relative;line-height:1.3}
+.flash .prompt .qen{display:block;font-family:'Mulish';font-size:14px;font-weight:600;color:var(--ink-soft);margin-top:6px}
+.flash .answer{position:relative;min-height:24px}
+.flash .answer .aes{font-family:'Fraunces';font-size:clamp(18px,4vw,22px);font-weight:600;color:var(--clay);line-height:1.35}
+.flash .answer .aen{font-size:14px;color:var(--ink-soft);margin-top:6px}
+.flash .hint{font-size:13px;color:var(--ink-soft);position:relative}
+.rate-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.empty{text-align:center;padding:40px 20px;color:var(--ink-soft)}
+.empty .big{font-size:46px;margin-bottom:10px}
+
+.player{background:linear-gradient(165deg,var(--ocean),var(--ocean-deep));color:#fff;border-radius:22px;padding:24px;box-shadow:var(--shadow)}
+.player .now{min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px}
+.player .now .nowq{font-size:14px;font-weight:700;opacity:.8}
+.player .now .nowa{font-family:'Fraunces',serif;font-size:clamp(18px,4vw,24px);font-weight:600;line-height:1.3}
+.player .now .nowen{font-size:13px;font-weight:600;opacity:.7}
+.transport{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 6px}
+.tbtn{width:50px;height:50px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;font-size:18px;cursor:pointer;
+  display:grid;place-items:center;transition:.15s}
+.tbtn:hover{background:rgba(255,255,255,.26)}
+.tbtn.play{width:66px;height:66px;background:var(--gold);color:var(--ocean-deep);font-size:24px;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+.tbtn.play:hover{background:#e8b652}
+.progress-track{height:6px;background:rgba(255,255,255,.18);border-radius:3px;overflow:hidden;margin-top:14px}
+.progress-fill{height:100%;background:var(--gold);width:0;transition:width .3s}
+.player .ctrls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.player label{font-size:12px;font-weight:700;opacity:.85;display:block;margin-bottom:5px}
+.player select,.player input[type=range]{width:100%}
+.listen-list{margin-top:16px;max-height:280px;overflow:auto}
+.ll-item{padding:9px 12px;border-radius:9px;font-size:14px;display:flex;gap:8px;align-items:center;cursor:pointer}
+.ll-item:hover{background:var(--sand-2)}
+.ll-item.playing{background:var(--foam);font-weight:700;color:var(--ocean-deep)}
+.ll-item .num{font-size:11px;color:var(--ink-soft);width:22px;flex:none}
+
+.recall-q{font-family:'Fraunces',serif;font-size:clamp(20px,4.5vw,26px);font-weight:600;color:var(--ocean-deep);text-align:center;margin:4px 0 4px;line-height:1.3}
+.recall-ctx{text-align:center;font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+.recall-ctx b{color:var(--clay)}
+.recall-dir{text-align:center;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--clay);margin-bottom:12px}
+textarea.recall-in{width:100%;font-family:'Mulish';font-size:17px;padding:14px 16px;border:2px solid var(--line);border-radius:14px;
+  resize:none;background:var(--paper);color:var(--ink);min-height:84px}
+textarea.recall-in:focus{outline:none;border-color:var(--ocean)}
+.verdict{margin-top:16px;border-radius:14px;padding:16px;display:none}
+.verdict.show{display:block;animation:rise .3s both}
+.verdict.ok{background:#e7f4ec;border:1px solid var(--good)}
+.verdict.no{background:#fbeaea;border:1px solid var(--bad)}
+.verdict .vh{font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.verdict.ok .vh{color:var(--good)} .verdict.no .vh{color:var(--bad)}
+.verdict .correct{font-family:'Fraunces';font-size:18px;color:var(--ink)}
+.score-row{display:flex;gap:18px;justify-content:center;margin-bottom:16px}
+.score-row .s{text-align:center}
+.score-row .s b{font-family:'Fraunces';font-size:26px;color:var(--ocean-deep);display:block}
+.score-row .s span{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--ink-soft)}
+
+.gweek{display:flex;align-items:center;gap:10px;margin:22px 0 10px}
+.gweek h3{font-family:'Fraunces';font-size:20px;color:var(--ocean-deep)}
+.gweek .badge{font-size:11px;font-weight:800;background:var(--gold);color:var(--ocean-deep);padding:3px 10px;border-radius:999px;text-transform:uppercase}
+.grule{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--clay);border-radius:12px;padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+.grule h4{font-family:'Fraunces';font-size:18px;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.grule .exp{font-size:14px;color:var(--ink-soft);margin-bottom:10px}
+.gex{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px dashed var(--line);font-size:14px}
+.gex .gx-es{font-family:'Fraunces';font-weight:600;color:var(--ocean-deep)}
+.gex .gx-en{color:var(--ink-soft);font-size:13px}
+
+.modal-bg{position:fixed;inset:0;background:rgba(9,40,37,.5);backdrop-filter:blur(3px);z-index:100;display:none;
+  align-items:flex-start;justify-content:center;padding:40px 16px;overflow:auto}
+.modal-bg.show{display:flex}
+.modal{background:var(--paper);border-radius:20px;max-width:540px;width:100%;padding:26px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);animation:rise .3s both}
+.modal h3{font-family:'Fraunces';font-size:22px;color:var(--ocean-deep);margin-bottom:4px}
+.modal .mh-sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:800;font-size:13px;margin-bottom:6px;color:var(--ink)}
+.field input,.field textarea,.field select{width:100%;font-family:'Mulish';font-size:15px;padding:11px 13px;border:1.5px solid var(--line);
+  border-radius:11px;background:#fff;color:var(--ink)}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--ocean)}
+.field textarea{min-height:56px;resize:vertical}
+.field.half-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-acts{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+.ex-builder .row2{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:8px}
+@media(max-width:520px){.ex-builder .row2{grid-template-columns:1fr}}
+
+.note{background:#fff7e6;border:1px solid var(--gold);border-radius:12px;padding:12px 14px;font-size:13px;color:#7a5a14;display:flex;gap:10px}
+.note b{color:#5e4310}
+.fab{position:fixed;right:20px;bottom:24px;z-index:30;background:var(--clay);color:#fff;border:none;border-radius:999px;
+  padding:15px 22px;font-weight:800;font-family:'Mulish';font-size:15px;box-shadow:0 12px 28px -10px var(--clay);cursor:pointer;display:flex;gap:8px;align-items:center}
+.fab:active{transform:scale(.96)}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ocean-deep);color:#fff;
+  padding:12px 20px;border-radius:999px;font-weight:700;font-size:14px;z-index:200;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.muted{color:var(--ink-soft);font-size:13px}
+.center{text-align:center}
+footer{text-align:center;color:var(--ink-soft);font-size:12px;padding:30px 0 10px}
+.kbd{font-family:monospace;background:var(--sand-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px}
+
+/* Vocabulary hero */
+.vocab-hero{background:linear-gradient(135deg,var(--ocean-deep),var(--ocean) 60%,var(--ocean-light));color:#fff;
+  border:none;border-radius:20px;padding:22px 24px;margin-bottom:16px;position:relative;overflow:hidden;cursor:pointer}
+.vocab-hero::after{content:"〜";position:absolute;font-size:200px;font-family:'Fraunces';color:rgba(255,255,255,.06);right:-10px;top:-70px}
+.vocab-hero .vh-top{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;position:relative}
+.vocab-hero .vh-num{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(40px,9vw,58px);line-height:.85}
+.vocab-hero .vh-words{font-family:'Fraunces';font-style:italic;font-size:18px;opacity:.9;padding-bottom:6px}
+.vocab-hero .vh-target{margin-left:auto;text-align:right;padding-bottom:6px}
+.vocab-hero .vh-target b{font-size:20px;font-family:'Fraunces'}
+.vocab-hero .vh-target span{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.8}
+.vocab-bar{height:12px;background:rgba(255,255,255,.16);border-radius:7px;overflow:hidden;margin-top:16px;position:relative}
+.vocab-bar .fill{height:100%;background:linear-gradient(90deg,var(--gold),#f0c869);border-radius:7px;width:0;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.vocab-hero .vh-sub{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:12.5px;font-weight:600;opacity:.9;flex-wrap:wrap;position:relative}
+.vocab-hero .vh-cta{font-size:12px;font-weight:800;opacity:.85;text-decoration:underline;text-underline-offset:3px}
+.mile-pips{display:flex;gap:6px;margin-top:12px;position:relative;flex-wrap:wrap}
+.mile-pips .pip{font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.14)}
+.mile-pips .pip.done{background:var(--gold);color:var(--ocean-deep)}
+.mile-pips .pip.curr{background:rgba(255,255,255,.32);box-shadow:0 0 0 2px rgba(255,255,255,.4) inset}
+
+.badge-master{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:6px;background:var(--good);color:#fff}
+.btn.knowit{border-color:var(--good);color:var(--good)}
+.btn.knowit.on{background:var(--good);color:#fff;border-color:var(--good)}
+
+.wordchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.wchip{font-size:13px;font-weight:600;padding:5px 11px;border-radius:8px;background:var(--sand-2);color:var(--ocean-deep);border:1px solid var(--line)}
+.wchip.todo{background:transparent;color:var(--ink-soft);border-style:dashed;opacity:.7}
+.word-tabs{display:flex;gap:8px;margin-bottom:14px}
+.word-tabs button{flex:1;padding:9px;border-radius:10px;border:1.5px solid var(--line);background:transparent;font-family:'Mulish';font-weight:800;font-size:13px;color:var(--ink-soft);cursor:pointer}
+.word-tabs button.active{background:var(--ocean);color:#fff;border-color:var(--ocean)}
+
+/* Session hero */
+.session-hero{display:flex;gap:20px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin-bottom:16px;box-shadow:var(--shadow-sm);flex-wrap:wrap}
+.ring-wrap{position:relative;width:118px;height:118px;flex:none}
+.ring{width:118px;height:118px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:11}
+.ring .ring-bg{stroke:var(--sand-2)}
+.ring .ring-fg{stroke:var(--clay);stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset .7s cubic-bezier(.2,.8,.2,1)}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-pct{font-family:'Fraunces';font-weight:900;font-size:28px;color:var(--ocean-deep);line-height:1}
+.ring-lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+.session-info{flex:1;min-width:220px}
+.chips-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.lvl-chip{font-size:12px;font-weight:800;background:linear-gradient(120deg,var(--ocean),var(--ocean-light));color:#fff;padding:5px 12px;border-radius:999px}
+.streak-chip{font-size:12px;font-weight:800;background:var(--sand-2);color:var(--clay);padding:5px 12px;border-radius:999px}
+.session-status{font-family:'Fraunces';font-size:17px;color:var(--ink);line-height:1.3}
+.mini-goals{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+.mini-goal{font-size:12px;font-weight:700;color:var(--ink-soft);display:flex;align-items:center;gap:6px}
+.mini-goal .mg-bar{width:54px;height:7px;border-radius:4px;background:var(--sand-2);overflow:hidden}
+.mini-goal .mg-bar i{display:block;height:100%;background:var(--ocean-light);width:0}
+.mini-goal.done{color:var(--good)} .mini-goal.done .mg-bar i{background:var(--good)}
+
+/* Vault */
+.vault-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.vstat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;box-shadow:var(--shadow-sm)}
+.vstat b{font-family:'Fraunces';font-size:28px;color:var(--ocean-deep);display:block;line-height:1}
+.vstat span{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-soft)}
+.vault-group{margin-top:16px}
+.vault-group h4{font-family:'Fraunces';font-size:15px;color:var(--clay);margin-bottom:8px}
+
+/* Confetti */
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden}
+.confetti-bit{position:absolute;top:-12px;width:9px;height:14px;border-radius:2px;will-change:transform,opacity;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.2}}
+
+/* Reminder banner */
+.reminder-banner{background:linear-gradient(120deg,var(--clay),var(--clay-soft));color:#fff;border-radius:14px;padding:13px 16px;margin-bottom:14px;display:none;align-items:center;gap:12px;font-weight:700;box-shadow:var(--shadow-sm)}
+.reminder-banner.show{display:flex}
+.reminder-banner button{margin-left:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>Mis <em>Islas</em></h1>
+      <span class="sub">Your Spanish Language-Islands trainer · A1–A2</span>
+      <div class="streak-pill"><span class="flame">🔥</span><span id="streakNum">0</span> <span style="font-weight:600;font-size:13px;opacity:.8">day streak</span></div>
+    </div>
+    <div class="toolbar-mini">
+      <button class="btn icon" id="btnSettings" title="Settings">⚙︎</button>
+      <button class="btn icon" id="btnBackup" title="Backup &amp; audio export">⇅</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button data-view="today" class="active"><span class="ic">🌅</span>Today</button>
+    <button data-view="islands"><span class="ic">🏝️</span>Islands</button>
+    <button data-view="listen"><span class="ic">🎧</span>Listen</button>
+    <button data-view="recall"><span class="ic">✍️</span>Recall</button>
+    <button data-view="grammar"><span class="ic">📐</span>Grammar</button>
+    <button data-view="vault"><span class="ic">🗃️</span>Vault</button>
+  </nav>
+
+  <main>
+    <!-- TODAY -->
+    <section class="view active" id="view-today">
+      <div class="reminder-banner" id="reminderBanner"><span>⏰ Time for your Spanish! Your daily target is waiting.</span><button class="btn sm" style="background:#fff;color:var(--clay)" id="reminderGo">Start →</button></div>
+      <h2 class="section" id="greeting">Buenos días 👋</h2>
+      <p class="section-sub">Your daily target keeps the streak alive. Tap <b>Continue session</b> and the app walks you through what's left today.</p>
+
+      <div class="session-hero">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120" class="ring">
+            <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+            <circle class="ring-fg" id="goalRing" cx="60" cy="60" r="52"></circle>
+          </svg>
+          <div class="ring-center"><div class="ring-pct" id="goalPct">0%</div><div class="ring-lbl">today</div></div>
+        </div>
+        <div class="session-info">
+          <div class="chips-row">
+            <span class="lvl-chip" id="levelChip">Nivel 0 · Principiante</span>
+            <span class="streak-chip" id="streakChip">🔥 0</span>
+          </div>
+          <div class="session-status" id="sessionStatus">Let's begin today's session.</div>
+          <div class="row" style="margin-top:6px">
+            <button class="btn primary" id="startSession">▶ Continue session</button>
+            <button class="btn ghost sm" id="recheckToday" style="display:none">🔁 Re-check <span id="maintCount">0</span></button>
+          </div>
+          <div class="mini-goals" id="miniGoals"></div>
+        </div>
+      </div>
+
+      <div class="vocab-hero" id="vocabHero" title="See your words">
+        <div class="vh-top">
+          <div class="vh-num" id="vocabCount">0</div>
+          <div class="vh-words">words learned</div>
+          <div class="vh-target"><b id="vocabTarget">1,000</b><span>next milestone</span></div>
+        </div>
+        <div class="vocab-bar"><div class="fill" id="vocabFill"></div></div>
+        <div class="vh-sub">
+          <span id="vocabToGo">1,000 to go</span>
+          <span id="vocabCta" class="vh-cta">View &amp; bank words →</span>
+        </div>
+        <div class="mile-pips" id="milePips"></div>
+      </div>
+
+      <div class="today-grid">
+        <div class="panel checklist">
+          <div class="item" id="ck-islands">
+            <div class="check">✓</div>
+            <div><div class="ci-title">Practise your islands</div><div class="ci-desc"><span id="dueCount">0</span> islands due for spaced repetition</div></div>
+            <button class="btn ocean sm go" data-goto="islands">Practise</button>
+          </div>
+          <div class="item" id="ck-listen">
+            <div class="check">✓</div>
+            <div><div class="ci-title">Listen (comprehensible input)</div><div class="ci-desc">Loop your Q&amp;A islands in Spanish</div></div>
+            <button class="btn ocean sm go" data-goto="listen">Listen</button>
+          </div>
+          <div class="item" id="ck-recall">
+            <div class="check">✓</div>
+            <div><div class="ci-title">Active recall test</div><div class="ci-desc">Answer the questions from memory</div></div>
+            <button class="btn ocean sm go" data-goto="recall">Test me</button>
+          </div>
+          <div class="item" id="ck-grammar">
+            <div class="check">✓</div>
+            <div><div class="ci-title">Review this week's grammar</div><div class="ci-desc">2 rules, repeated daily</div></div>
+            <button class="btn ocean sm go" data-goto="grammar">Review</button>
+          </div>
+        </div>
+        <div>
+          <div class="stat-grid" style="margin-bottom:16px">
+            <div class="stat"><div class="n" id="stMastered">0</div><div class="l">Mastered</div></div>
+            <div class="stat clay"><div class="n" id="stTotal">0</div><div class="l">Islands</div></div>
+            <div class="stat clay"><div class="n" id="stLearning">0</div><div class="l">Learning</div></div>
+            <div class="stat"><div class="n" id="stReviews">0</div><div class="l">Reps today</div></div>
+          </div>
+          <div class="panel">
+            <p class="daily-q" id="dailyQ">“…”</p>
+            <p class="daily-a" id="dailyA"></p>
+            <p class="muted" id="dailyEn" style="margin-top:8px"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ISLANDS -->
+    <section class="view" id="view-islands">
+      <h2 class="section">Your Language Islands</h2>
+      <p class="section-sub">Each island is a <b>question and your answer</b> — shown in English and in Spanish, just like your sheet. These are the lines you want ready to "swim to" in conversation. Edit them so they sound exactly like <i>you</i>.</p>
+
+      <div class="row" style="margin-bottom:16px">
+        <button class="btn primary" id="startPractice">▶ Practise due islands (<span id="dueCount2">0</span>)</button>
+        <button class="btn ghost" id="addSentence">＋ Add island</button>
+        <button class="btn ghost" id="reCheck">🔁 Re-check</button>
+        <button class="btn ghost" id="loadMore">⬇ Load more</button>
+      </div>
+
+      <!-- Practice mode -->
+      <div id="practiceArea" style="display:none">
+        <div class="flash">
+          <div class="qline" id="pQline">Question</div>
+          <div class="prompt" id="pPrompt"></div>
+          <div class="hint" id="pHint">Answer it in Spanish, then reveal</div>
+          <div class="answer" id="pAnswer"></div>
+          <div class="rate-row" id="pReveal"><button class="btn ocean" id="pShow">👁 Reveal answer</button> <button class="btn ghost" id="pSpeak">🔊 Hear question</button></div>
+          <div class="rate-row" id="pRate" style="display:none">
+            <button class="btn ghost" id="rateAgain">↻ Again</button>
+            <button class="btn ocean" id="rateGood">✓ Got it</button>
+            <button class="btn ghost" id="pSpeak2">🔊 Answer</button>
+          </div>
+        </div>
+        <p class="center muted" style="margin-top:12px"><span id="pPos">0</span> left · <button class="btn sm ghost" id="endPractice">Exit</button></p>
+      </div>
+
+      <!-- Browse mode -->
+      <div id="browseArea">
+        <div class="filters" id="catFilters"></div>
+        <div id="sentenceList"></div>
+      </div>
+    </section>
+
+    <!-- LISTEN -->
+    <section class="view" id="view-listen">
+      <h2 class="section">Listen &amp; absorb</h2>
+      <p class="section-sub">Comprehensible input: hear each island in Spanish on a loop — question, then your answer — repeated so the rhythm sinks in. Pick a category, press play, and shadow along (repeat out loud).</p>
+
+      <div class="player">
+        <div class="now" id="nowPlaying"><div class="nowa">Press play to begin 🎧</div></div>
+        <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+        <div class="transport">
+          <button class="tbtn" id="lPrev" title="Previous">⏮</button>
+          <button class="tbtn play" id="lPlay" title="Play / pause">▶</button>
+          <button class="tbtn" id="lNext" title="Next">⏭</button>
+        </div>
+        <div class="ctrls">
+          <div>
+            <label>Category</label>
+            <select id="lCategory"></select>
+          </div>
+          <div>
+            <label>Repeats per island: <span id="repVal">2</span></label>
+            <input type="range" id="lRepeats" min="1" max="5" value="2">
+          </div>
+          <div>
+            <label>Speed: <span id="rateVal">0.9</span>×</label>
+            <input type="range" id="lRate" min="0.6" max="1.1" step="0.05" value="0.9">
+          </div>
+          <div>
+            <label>Gap (sec): <span id="gapVal">1.2</span></label>
+            <input type="range" id="lGap" min="0.3" max="3" step="0.1" value="1.2">
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:10px;font-size:13px;flex-wrap:wrap">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.95"><input type="checkbox" id="lIncludeEn"> Speak the English answer first</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.95"><input type="checkbox" id="lQuestion" checked> Include the question</label>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:16px">
+        <span>📱</span>
+        <div><b>Listening on the move (walking / cycling):</b> browser speech pauses when your phone screen locks, so true pocket-playback isn't reliable here. For that, use the <b>⇅ Audio export</b> (top-right) to get a clean script you can turn into a real MP3/podcast for offline background listening. On your computer or with the screen on, the loop above works great.</div>
+      </div>
+
+      <div class="panel" style="margin-top:16px">
+        <div class="muted" style="margin-bottom:8px;font-weight:700">In this loop</div>
+        <div class="listen-list" id="listenList"></div>
+      </div>
+    </section>
+
+    <!-- RECALL -->
+    <section class="view" id="view-recall">
+      <h2 class="section">Active recall</h2>
+      <p class="section-sub">The hard, effective part. You're given one side; type the other from memory. Producing your Spanish answer to a question is exactly the island skill. Correct answers also advance the card's spaced-repetition box.</p>
+
+      <div class="score-row">
+        <div class="s"><b id="recCorrect">0</b><span>Correct</span></div>
+        <div class="s"><b id="recTotal">0</b><span>Attempts</span></div>
+        <div class="s"><b id="recPct">0%</b><span>Accuracy</span></div>
+      </div>
+
+      <div class="panel" id="recallCard">
+        <div class="recall-dir" id="recDir">English → Spanish</div>
+        <div class="recall-ctx" id="recCtx"></div>
+        <div class="recall-q" id="recPrompt"></div>
+        <textarea class="recall-in" id="recInput" placeholder="Type your answer from memory…"></textarea>
+        <div class="row" style="margin-top:14px">
+          <button class="btn primary" id="recCheck">Check</button>
+          <button class="btn ghost" id="recHear">🔊 Hear Spanish</button>
+          <button class="btn ghost" id="recSkip">Skip →</button>
+        </div>
+        <div class="verdict" id="recVerdict">
+          <div class="vh" id="recVh"></div>
+          <div class="muted">Correct answer:</div>
+          <div class="correct" id="recAnswer"></div>
+          <div class="row" style="margin-top:12px">
+            <button class="btn ocean" id="recNext">Next →</button>
+            <button class="btn ghost sm" id="recMarkRight">I was actually right ✓</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:14px;justify-content:center">
+        <label class="muted" style="display:flex;align-items:center;gap:8px;font-weight:700">Direction:
+          <select id="recMode" style="padding:7px 10px;border-radius:9px;border:1.5px solid var(--line)">
+            <option value="en-es" selected>English answer → Spanish</option>
+            <option value="es-en">Spanish answer → English</option>
+            <option value="mixed">Mixed (both)</option>
+          </select>
+        </label>
+        <label class="muted" style="display:flex;align-items:center;gap:8px;font-weight:700">Pool:
+          <select id="recPool" style="padding:7px 10px;border-radius:9px;border:1.5px solid var(--line)">
+            <option value="all">All islands</option>
+            <option value="due">Due cards only</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <!-- GRAMMAR -->
+    <section class="view" id="view-grammar">
+      <h2 class="section">Grammar, the gentle way</h2>
+      <p class="section-sub">2 new rules a week, reviewed daily. No drills — just short rules with real example sentences you can fold into your islands.</p>
+      <div class="row" style="margin-bottom:8px">
+        <button class="btn primary" id="genGrammar">✨ Generate 2 rules from my islands</button>
+        <button class="btn ghost" id="addGrammar">＋ Add manually</button>
+      </div>
+      <div id="grammarList"></div>
+    </section>
+
+    <!-- VAULT -->
+    <section class="view" id="view-vault">
+      <h2 class="section">Word vault 🗃️</h2>
+      <p class="section-sub">Every Spanish word you've banked, kept safe. The app quietly schedules mastered islands to come back for a <b>re-check</b> so words don't fade — do them here or from Today.</p>
+
+      <div class="vault-stat-row">
+        <div class="vstat"><b id="vaultLearned">0</b><span>words banked</span></div>
+        <div class="vstat"><b id="vaultMastered">0</b><span>islands mastered</span></div>
+        <div class="vstat"><b id="vaultDue">0</b><span>due for re-check</span></div>
+      </div>
+
+      <div class="row" style="margin:14px 0">
+        <button class="btn primary" id="vaultRecheck">🔁 Re-check due (<span id="vaultDue2">0</span>)</button>
+        <input id="vaultSearch" placeholder="🔎 search words…" style="flex:1;min-width:160px;font-family:'Mulish';font-size:15px;padding:10px 13px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper)">
+      </div>
+      <div id="vaultWords"></div>
+    </section>
+  </main>
+
+  <footer>Built around Mikel Telleria's Language-Islands method · your data is saved on this device. Use <span class="kbd">⇅</span> to back it up or move it to another device.</footer>
+</div>
+
+<button class="fab" id="fabAdd">＋ Island</button>
+<div class="toast" id="toast"></div>
+
+<!-- Island modal -->
+<div class="modal-bg" id="modalSentence">
+  <div class="modal">
+    <h3 id="sentModalTitle">New island</h3>
+    <p class="mh-sub">A question and your answer — write it the way you'd really say it.</p>
+    <div class="field half-row">
+      <div><label>Question (English)</label><textarea id="fqEn" placeholder="What is your job?"></textarea></div>
+      <div><label>Question (Spanish)</label><textarea id="fqEs" placeholder="¿Cuál es tu trabajo?"></textarea></div>
+    </div>
+    <div class="field half-row">
+      <div><label>Your answer (English)</label><textarea id="faEn" placeholder="I am an online coach…"></textarea></div>
+      <div><label>Your answer (Spanish)</label><textarea id="faEs" placeholder="Soy un entrenador online…"></textarea></div>
+    </div>
+    <div class="field"><label>Category</label><input list="catOptions" id="fCat" placeholder="Work"><datalist id="catOptions"></datalist></div>
+    <div class="modal-acts">
+      <button class="btn ghost" id="sentDelete" style="margin-right:auto;display:none;color:var(--bad);border-color:var(--bad)">Delete</button>
+      <button class="btn ghost" data-close>Cancel</button>
+      <button class="btn primary" id="sentSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Grammar modal -->
+<div class="modal-bg" id="modalGrammar">
+  <div class="modal">
+    <h3>Grammar rule</h3>
+    <p class="mh-sub">Keep it short. Add 1–3 example sentences.</p>
+    <div class="field"><label>Rule title</label><input id="gTitle" placeholder="Ser vs Estar"></div>
+    <div class="field"><label>Explanation</label><textarea id="gExp" placeholder="Use SER for identity/permanent things, ESTAR for states & location."></textarea></div>
+    <div class="field"><label>Week number</label><input id="gWeek" type="number" min="1" value="1"></div>
+    <label style="font-weight:800;font-size:13px;margin-bottom:6px;display:block">Examples</label>
+    <div id="exList" class="ex-builder"></div>
+    <button class="btn ghost sm" id="addEx" style="margin-bottom:14px">＋ Add example</button>
+    <div class="modal-acts">
+      <button class="btn ghost" id="gramDelete" style="margin-right:auto;display:none;color:var(--bad);border-color:var(--bad)">Delete</button>
+      <button class="btn ghost" data-close>Cancel</button>
+      <button class="btn primary" id="gramSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Words modal -->
+<div class="modal-bg" id="modalWords">
+  <div class="modal">
+    <h3>Your vocabulary</h3>
+    <p class="mh-sub" id="wordsSummary">—</p>
+    <div class="word-tabs">
+      <button id="wtLearned" class="active">Learned</button>
+      <button id="wtTodo">Still to bank</button>
+    </div>
+    <div id="wordsBody" style="max-height:50vh;overflow:auto"></div>
+    <div class="modal-acts"><button class="btn ghost" data-close>Close</button></div>
+  </div>
+</div>
+
+<!-- Settings modal -->
+<div class="modal-bg" id="modalSettings">
+  <div class="modal">
+    <h3>Settings</h3>
+    <p class="mh-sub">Voice &amp; defaults for speech.</p>
+    <div class="field"><label>Spanish voice</label><select id="setVoice"></select></div>
+    <div class="field"><label>Default speed: <span id="setRateVal">0.9</span>×</label><input type="range" id="setRate" min="0.6" max="1.1" step="0.05" value="0.9"></div>
+    <div class="field"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="setAccents" checked> Ignore accents/punctuation when checking recall</label></div>
+    <div class="field"><label>Daily goal</label>
+      <select id="setGoal">
+        <option value="light">Light · ~5 min (5 reps, 5 recalls, 1 listen)</option>
+        <option value="standard">Standard · ~15 min (12 reps, 12 recalls, 1 listen)</option>
+        <option value="serious">Serious · ~30 min (25 reps, 25 recalls, 2 listens)</option>
+      </select>
+    </div>
+    <div class="field"><label>Daily reminder time (optional)</label>
+      <div class="row">
+        <input type="time" id="setReminder" style="flex:1;font-family:'Mulish';font-size:15px;padding:10px 13px;border:1.5px solid var(--line);border-radius:11px;background:#fff">
+        <button class="btn ghost sm" id="addCalendar" type="button">📅 Add to calendar</button>
+      </div>
+      <p class="muted" style="margin-top:6px">A web app can't notify you when it's closed — tap "Add to calendar" so your phone reminds you. If you keep this open, it'll nudge you at this time too.</p>
+    </div>
+    <div class="modal-acts"><button class="btn ghost" data-close>Close</button><button class="btn primary" id="setSave">Save</button></div>
+  </div>
+</div>
+
+<!-- Backup modal -->
+<div class="modal-bg" id="modalBackup">
+  <div class="modal">
+    <h3>Backup &amp; audio</h3>
+    <p class="mh-sub">Move your data between computer and phone, or create offline audio.</p>
+    <div class="field">
+      <label>1 · Save / move your progress</label>
+      <div class="row">
+        <button class="btn ocean sm" id="doExport">⬇ Export data (.json)</button>
+        <button class="btn ghost sm" id="doImportBtn">⬆ Import data</button>
+        <input type="file" id="importFile" accept="application/json" style="display:none">
+      </div>
+      <p class="muted" style="margin-top:8px">Open this tool on your other device, then Import the file. This is also your safety backup.</p>
+    </div>
+    <div class="field">
+      <label>2 · Offline listening (walking / cycling)</label>
+      <button class="btn ocean sm" id="doAudioScript">⬇ Download audio script (.txt)</button>
+      <p class="muted" style="margin-top:8px">Paste the script into a free text-to-speech tool (your phone's built-in TTS, or a site like ttsmaker / NaturalReaders), set a Spanish voice, and save as MP3. Then it plays in the background with your screen off. Each answer repeats with pauses for shadowing.</p>
+    </div>
+    <div class="modal-acts"><button class="btn ghost" data-close>Close</button></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* DOM helpers — defined FIRST so anything that runs during load (e.g. voice setup) can use them */
+const $ = s=>document.querySelector(s);
+const $$ = s=>Array.from(document.querySelectorAll(s));
+
+/* ============ Storage (works in Claude, on GitHub Pages, and offline) ============ */
+const STORE_KEY = "mis_islas_v2";
+let DB = null;
+const Store = (function(){
+  const ws = (typeof window!=="undefined" && window.storage && typeof window.storage.get==="function") ? window.storage : null;
+  let ls=null; try{ const k="__t_"+Math.random(); window.localStorage.setItem(k,"1"); window.localStorage.removeItem(k); ls=window.localStorage; }catch(e){ ls=null; }
+  let mem={};
+  return {
+    mode: ws?"claude":(ls?"local":"memory"),
+    async get(key){
+      if(ws){ try{ const r=await ws.get(key,false); return (r&&r.value)?r.value:null; }catch(e){ return null; } }
+      if(ls){ try{ return ls.getItem(key); }catch(e){ return null; } }
+      return mem[key]||null;
+    },
+    async set(key,val){
+      if(ws){ try{ await ws.set(key,val,false); }catch(e){} return; }
+      if(ls){ try{ ls.setItem(key,val); }catch(e){} return; }
+      mem[key]=val;
+    }
+  };
+})();
+
+async function loadDB(){
+  try{ const raw = await Store.get(STORE_KEY); if(raw){ DB = JSON.parse(raw); } }catch(e){ DB = null; }
+  if(!DB) DB = seedDB();
+  loadDefaults();
+  rolloverDay();
+}
+function loadDefaults(){
+  DB.islands = DB.islands||[];
+  DB.islands.forEach(s=>{ if(s.mastered===undefined) s.mastered=((s.box||1)>=5); if(s.kind===undefined) s.kind=(s.qEs?"qa":"st"); if(s.mastered && !s.maint){ setMaint(s,21); s.maintStreak=s.maintStreak||0; } });
+  DB.grammar = DB.grammar||[];
+  DB.grammarCovered = DB.grammarCovered||[];
+  DB.libCursor = DB.libCursor||0;
+  DB.settings = Object.assign({rate:0.9, voiceURI:"", ignoreAccents:true, goal:"standard", reminderTime:""}, DB.settings||{});
+  DB.stats = Object.assign({streak:0,lastActive:null,reps:{},recall:{c:0,t:0}}, DB.stats||{});
+  DB.today = Object.assign({date:null,islands:false,listen:false,recall:false,grammar:false,pr:0,rc:0,ls:0,goalDone:false}, DB.today||{});
+}
+let saveQueued=false;
+function saveDB(){
+  if(saveQueued) return; saveQueued=true;
+  setTimeout(()=>{ saveQueued=false; Store.set(STORE_KEY, JSON.stringify(DB)); },150);
+}
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function daysBetween(a,b){ return Math.round((new Date(b)-new Date(a))/86400000); }
+const BOX_DAYS = {1:0,2:1,3:3,4:7,5:16};
+const MILESTONE = 1000;
+
+/* ---- Vocabulary: words learned ---- */
+function wordsOf(text){
+  return (text||"").toLowerCase().normalize("NFC")
+    .replace(/[¿?¡!.,;:"'«»\u201c\u201d\u2018\u2019()\[\]{}…—–\-\/]/g," ")
+    .split(/\s+/).filter(w=>w.length>0 && /[a-záéíóúüñ0-9]/i.test(w));
+}
+function islandWordSet(s){ const set=new Set(); wordsOf(s.qEs).forEach(w=>set.add(w)); wordsOf(s.aEs).forEach(w=>set.add(w)); return set; }
+function learnedWordSet(excludeId){ const set=new Set(); DB.islands.forEach(s=>{ if(s.mastered && s.id!==excludeId){ islandWordSet(s).forEach(w=>set.add(w)); } }); return set; }
+function corpusWordSet(){ const set=new Set(); DB.islands.forEach(s=>islandWordSet(s).forEach(w=>set.add(w))); return set; }
+function learnedCount(){ return learnedWordSet().size; }
+function newWordsIfMastered(s){ const before=learnedWordSet(s.id); let n=0; islandWordSet(s).forEach(w=>{ if(!before.has(w)) n++; }); return n; }
+
+function scheduleNext(s){ const d=new Date(); d.setDate(d.getDate()+(BOX_DAYS[s.box]||0)); s.next=d.toISOString().slice(0,10); }
+function setMaint(s, days){ const d=new Date(); d.setDate(d.getDate()+days); s.maint=d.toISOString().slice(0,10); }
+function applyResult(s, good){
+  s.box = good ? Math.min(5,(s.box||1)+1) : 1;
+  scheduleNext(s);
+  if((s.box||1)>=5 && !s.mastered){ const n=newWordsIfMastered(s); s.mastered=true; s.maintStreak=0; setMaint(s,21); celebrateMastery(n); }
+}
+let lastLearned=0;
+function celebrateMastery(n){ toast("🎉 Island mastered! +"+n+" word"+(n===1?"":"s")); if(typeof confetti==="function") confetti(); }
+function toggleMastered(id){
+  const s=DB.islands.find(x=>x.id===id); if(!s) return;
+  if(!s.mastered){ const n=newWordsIfMastered(s); s.mastered=true; s.maintStreak=0; setMaint(s,21); if((s.box||1)<5){ s.box=5; scheduleNext(s); } toast("✓ Banked +"+n+" word"+(n===1?"":"s")); if(typeof confetti==="function") confetti(); }
+  else { s.mastered=false; s.maint=null; if((s.box||1)>=5){ s.box=4; scheduleNext(s); } toast("Removed from mastered"); }
+  saveDB(); renderSentenceList(); renderToday();
+}
+
+function rolloverDay(){
+  const t = todayStr();
+  if(DB.stats.lastActive){ const d = daysBetween(DB.stats.lastActive, t); if(d>=2){ DB.stats.streak = 0; } }
+  if(DB.today.date !== t){ DB.today = {date:t, islands:false, listen:false, recall:false, grammar:false, pr:0, rc:0, ls:0, goalDone:false}; }
+}
+function markActivityStreak(){
+  const t = todayStr();
+  if(DB.stats.lastActive !== t){
+    const prev = DB.stats.lastActive;
+    if(prev && daysBetween(prev,t)===1){ DB.stats.streak += 1; } else { DB.stats.streak = 1; }
+    DB.stats.lastActive = t;
+  }
+}
+function markToday(key){
+  rolloverDay();
+  if(!DB.today[key]){ DB.today[key]=true; markActivityStreak(); saveDB(); renderToday(); }
+}
+
+/* ============ Seed: 8 Q&A islands (ABOUT WORK rows 1–16) + grammar ============ */
+function seedDB(){
+  const isl=(qEn,aEn,qEs,aEs)=>({id:uid(),kind:"qa",cat:"Work",qEn,aEn,qEs,aEs,box:1,next:todayStr(),added:todayStr(),mastered:false});
+  const islands = [
+    isl("What is your job?",
+        "I am an online coach that helps people prepare for bodybuilding in both the amateur and professional divisions worldwide.",
+        "¿Cuál es tu trabajo?",
+        "Soy un entrenador online que ayuda a personas a prepararse para el culturismo tanto en la división amateur como en la profesional a nivel mundial."),
+    isl("What is the name of your business?",
+        "Our business name is 'Flex Success'. We called it this because we wanted to teach people how to be flexible with their nutrition.",
+        "¿Cuál es el nombre de su negocio?",
+        'Nuestro nombre comercial es "Flex Success". Lo llamamos así porque queríamos enseñar a la gente a ser flexible con su alimentación.'),
+    isl("How long have you had your business?",
+        "The business started around twelve years ago.",
+        "¿Cuánto tiempo lleva usted con su negocio?",
+        "El negocio comenzó hace unos doce años."),
+    isl("Do you work online or in person?",
+        "I work online but sometimes I go to the competitions in person as well.",
+        "¿Trabajas online o presencialmente?",
+        "Trabajo en línea, pero a veces también asisto a las competiciones en persona."),
+    isl("Do you work alone?",
+        "No, I don't work alone, I work in a team of five people.",
+        "¿Trabajas solo/a?",
+        "No, no trabajo solo, trabajo en un equipo de cinco personas."),
+    isl("Who do you work with?",
+        "The five people I work with are my wife, who is the business manager, two coaches who do the same as me, and we have one assistant.",
+        "¿Con quién trabajas?",
+        "Las cinco personas con las que trabajo son mi esposa, que es la gerente comercial, dos entrenadores que hacen lo mismo que yo y tenemos un asistente."),
+    isl("Is your wife also a coach?",
+        "My wife was a coach in the past but now she manages the business.",
+        "¿Tu esposa también es entrenadora?",
+        "Mi esposa fue entrenadora en el pasado, pero ahora administra el negocio."),
+    isl("How many coaches work in your business?",
+        "We have three coaches including myself.",
+        "¿Cuántos entrenadores trabajan en su empresa?",
+        "Tenemos tres entrenadores, incluyéndome a mí.")
+  ];
+  const grammar = [
+    {id:uid(),week:1,title:"Ser vs Estar (the basics)",
+     exp:"Use SER for identity and permanent traits (who/what something is). Use ESTAR for temporary states, feelings and location (how/where something is).",
+     ex:[{es:"Soy entrenador.",en:"I am a coach. (identity)"},
+         {es:"Estoy cansado.",en:"I am tired. (temporary state)"},
+         {es:"Estoy en el gimnasio.",en:"I am at the gym. (location)"}]},
+    {id:uid(),week:1,title:"Present tense: regular -AR verbs",
+     exp:"Drop -ar and add: -o, -as, -a, -amos, -áis, -an. This covers many everyday verbs (trabajar, ayudar, entrenar…).",
+     ex:[{es:"Yo trabajo, tú trabajas, él trabaja.",en:"I work, you work, he works."},
+         {es:"Ayudamos a muchas personas.",en:"We help many people."},
+         {es:"Ellos entrenan cada día.",en:"They train every day."}]}
+  ];
+  return {islands, grammar, grammarCovered:["ser_estar","present_ar"], libCursor:0, settings:{rate:0.9,voiceURI:"",ignoreAccents:true},
+    stats:{streak:0,lastActive:null,reps:{},recall:{c:0,t:0}},
+    today:{date:todayStr(),islands:false,listen:false,recall:false,grammar:false}};
+}
+
+/* ============ Speech ============ */
+let voices=[];
+function loadVoices(){ voices = speechSynthesis.getVoices()||[]; populateVoiceSelect(); }
+if("speechSynthesis" in window){ speechSynthesis.onvoiceschanged = loadVoices; loadVoices(); }
+function spanishVoices(){ return voices.filter(v=>/^es(-|_|$)/i.test(v.lang)); }
+function pickVoice(){
+  const want=DB.settings.voiceURI;
+  if(want){ const v=voices.find(v=>v.voiceURI===want); if(v) return v; }
+  const es=spanishVoices();
+  // Prefer "Google español" (es-ES), then any European Spanish, then any Spanish
+  return es.find(v=>/google/i.test(v.name)&&/es[-_]?ES/i.test(v.lang))
+      || es.find(v=>/google/i.test(v.name)&&/españ|spain|es-ES/i.test(v.name+v.lang))
+      || es.find(v=>/es[-_]?ES/i.test(v.lang))
+      || es[0] || null;
+}
+function speak(text, rate, lang){
+  if(!("speechSynthesis" in window) || !text) return Promise.resolve();
+  return new Promise(res=>{
+    try{ speechSynthesis.cancel(); }catch(e){}
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang = lang || "es-ES"; u.rate = rate||DB.settings.rate||0.9;
+    if((lang||"es-ES").startsWith("es")){ const v=pickVoice(); if(v) u.voice=v; }
+    u.onend=()=>res(); u.onerror=()=>res();
+    speechSynthesis.speak(u);
+  });
+}
+
+/* ============ Helpers ============ */
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
+function openModal(id){ $("#"+id).classList.add("show"); }
+function closeModal(el){ el.classList.remove("show"); }
+$$("[data-close]").forEach(b=>b.onclick=e=>closeModal(e.target.closest(".modal-bg")));
+$$(".modal-bg").forEach(m=>m.addEventListener("click",e=>{ if(e.target===m) closeModal(m); }));
+function esc(t){ return (t||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function categories(){ const set=new Set(DB.islands.map(s=>s.cat).filter(Boolean)); ["Work","Personal Interests","Food","Travel"].forEach(c=>set.add(c)); return Array.from(set); }
+
+/* ============ Navigation ============ */
+function showView(v){
+  $$(".view").forEach(x=>x.classList.remove("active"));
+  $("#view-"+v).classList.add("active");
+  $$("nav.tabs button").forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  if(v==="islands"){ renderSentenceList(); }
+  if(v==="listen"){ buildListenCategorySelect(); }
+  if(v==="recall"){ startRecall(); }
+  if(v==="grammar"){ renderGrammar(); }
+  if(v==="vault"){ renderVault(); }
+  if(v==="today"){ renderToday(); }
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$$("nav.tabs button").forEach(b=>b.onclick=()=>showView(b.dataset.view));
+$$("[data-goto]").forEach(b=>b.onclick=()=>showView(b.dataset.goto));
+
+/* ============ TODAY ============ */
+function dueIslands(){ const t=todayStr(); return DB.islands.filter(s=>!s.next || s.next<=t); }
+function renderToday(){
+  rolloverDay();
+  $("#streakNum").textContent = DB.stats.streak;
+  const due = dueIslands().length;
+  $("#dueCount").textContent = due; $("#dueCount2").textContent = due;
+  $("#stMastered").textContent = DB.islands.filter(s=>s.mastered).length;
+  $("#stTotal").textContent = DB.islands.length;
+  $("#stLearning").textContent = DB.islands.filter(s=>!s.mastered).length;
+  $("#stReviews").textContent = DB.stats.reps[todayStr()]||0;
+  [["islands","ck-islands"],["listen","ck-listen"],["recall","ck-recall"],["grammar","ck-grammar"]]
+    .forEach(([k,id])=>$("#"+id).classList.toggle("done",!!DB.today[k]));
+  renderVocab();
+  renderSessionHero();
+  checkReminderBanner();
+  if(DB.islands.length){
+    const s = DB.islands[(new Date().getDate()) % DB.islands.length];
+    $("#dailyQ").textContent = s.qEs ? "“"+s.qEs+"”" : "";
+    $("#dailyA").textContent = s.aEs;
+    $("#dailyEn").textContent = (s.qEn? s.qEn+" — ":"")+s.aEn;
+  }
+}
+function fmt(n){ return n.toLocaleString("en-US"); }
+function renderVocab(){
+  const learned = learnedCount();
+  const corpus = corpusWordSet().size;
+  const masteredN = DB.islands.filter(s=>s.mastered).length;
+  const base = Math.floor(learned/MILESTONE)*MILESTONE;
+  const next = base + MILESTONE;
+  const pct = Math.min(100, ((learned-base)/MILESTONE)*100);
+  $("#vocabCount").textContent = fmt(learned);
+  $("#vocabTarget").textContent = fmt(next);
+  $("#vocabFill").style.width = pct+"%";
+  $("#vocabToGo").textContent = fmt(next-learned)+" words to "+fmt(next);
+  $("#vocabCta").textContent = masteredN+" island"+(masteredN===1?"":"s")+" mastered · "+fmt(corpus-learned)+" words still in your islands →";
+  // milestone pips
+  const levels = Math.max(3, Math.floor(learned/MILESTONE)+3);
+  let h="";
+  for(let i=1;i<=levels;i++){
+    const target=i*MILESTONE; const done=learned>=target; const curr=(target===next);
+    h+='<span class="pip'+(done?' done':'')+(curr?' curr':'')+'">'+fmt(target)+'</span>';
+  }
+  $("#milePips").innerHTML=h;
+  if(typeof updateLoadMoreLabel==="function") updateLoadMoreLabel();
+}
+
+/* ============ ISLANDS browse + CRUD ============ */
+let activeCat = "All";
+function renderCatFilters(){
+  const wrap=$("#catFilters"); wrap.innerHTML="";
+  ["All",...categories()].forEach(c=>{
+    const b=document.createElement("button"); b.className="chip"+(c===activeCat?" active":"");
+    const count = c==="All"?DB.islands.length:DB.islands.filter(s=>s.cat===c).length;
+    b.textContent = c+" ("+count+")";
+    b.onclick=()=>{ activeCat=c; renderSentenceList(); };
+    wrap.appendChild(b);
+  });
+}
+function boxDots(box){ let h='<div class="box-dots">'; for(let i=1;i<=5;i++) h+='<i class="'+(i<=box?"on":"")+'"></i>'; return h+'</div>'; }
+function renderSentenceList(){
+  renderCatFilters();
+  const list=$("#sentenceList"); list.innerHTML="";
+  let items = DB.islands.slice();
+  if(activeCat!=="All") items = items.filter(s=>s.cat===activeCat);
+  if(!items.length){ list.innerHTML='<div class="empty"><div class="big">🏝️</div>No islands here yet. Add your first one.</div>'; return; }
+  items.forEach(s=>{
+    const d=document.createElement("div"); d.className="icard";
+    const enQ = s.qEn ? `<div class="qa-q"><span class="lbl">Q</span><span>${esc(s.qEn)}</span></div>` : "";
+    const esQ = s.qEs ? `<div class="qa-q"><span class="lbl">P</span><span>${esc(s.qEs)}</span></div>` : "";
+    const enLbl = s.qEn ? "A" : "•", esLbl = s.qEs ? "R" : "•";
+    d.innerHTML=`
+      <div class="lang-block en">
+        <div class="lang-tag">🇬🇧 English</div>
+        ${enQ}
+        <div class="qa-a"><span class="lbl">${enLbl}</span><span>${esc(s.aEn)}</span></div>
+      </div>
+      <div class="lang-block es">
+        <div class="lang-tag">🇪🇸 Español</div>
+        ${esQ}
+        <div class="qa-a"><span class="lbl">${esLbl}</span><span>${esc(s.aEs)}</span></div>
+      </div>
+      <div class="foot">
+        <span class="tag">${esc(s.cat||"—")}</span>
+        ${s.mastered?'<span class="badge-master">✓ Mastered</span>':boxDots(s.box||1)}
+        <span class="muted" style="font-size:11px">${islandWordSet(s).size} words</span>
+        <span class="sp">
+          <button class="btn icon knowit ${s.mastered?'on':''}" data-know="${s.id}" title="Mark as known perfectly">${s.mastered?'✓ Known':'Know it?'}</button>
+          <button class="btn icon" data-speakq="${s.id}" title="Hear question">🔊 Q</button>
+          <button class="btn icon" data-speaka="${s.id}" title="Hear answer">🔊 A</button>
+          <button class="btn icon" data-edit="${s.id}" title="Edit">✎</button>
+        </span>
+      </div>`;
+    list.appendChild(d);
+  });
+  list.querySelectorAll("[data-know]").forEach(b=>b.onclick=()=>toggleMastered(b.dataset.know));
+  list.querySelectorAll("[data-speakq]").forEach(b=>b.onclick=()=>{ const s=DB.islands.find(x=>x.id===b.dataset.speakq); speak(s.qEs); });
+  list.querySelectorAll("[data-speaka]").forEach(b=>b.onclick=()=>{ const s=DB.islands.find(x=>x.id===b.dataset.speaka); speak(s.aEs); });
+  list.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>openSentenceModal(b.dataset.edit));
+}
+
+let editingId=null;
+function refreshCatOptions(){ $("#catOptions").innerHTML=categories().map(c=>`<option value="${esc(c)}">`).join(""); }
+function openSentenceModal(id){
+  refreshCatOptions(); editingId=id||null;
+  if(id){
+    const s=DB.islands.find(x=>x.id===id);
+    $("#sentModalTitle").textContent="Edit island";
+    $("#fqEn").value=s.qEn; $("#faEn").value=s.aEn; $("#fqEs").value=s.qEs; $("#faEs").value=s.aEs; $("#fCat").value=s.cat||"";
+    $("#sentDelete").style.display="inline-flex";
+  }else{
+    $("#sentModalTitle").textContent="New island";
+    $("#fqEn").value=""; $("#faEn").value=""; $("#fqEs").value=""; $("#faEs").value=""; $("#fCat").value=activeCat!=="All"?activeCat:"Work";
+    $("#sentDelete").style.display="none";
+  }
+  openModal("modalSentence"); setTimeout(()=>$("#fqEn").focus(),50);
+}
+$("#sentSave").onclick=()=>{
+  const qEn=$("#fqEn").value.trim(), aEn=$("#faEn").value.trim(), qEs=$("#fqEs").value.trim(), aEs=$("#faEs").value.trim(), cat=$("#fCat").value.trim()||"Work";
+  if(!qEs||!aEs){ toast("At least add the Spanish question and answer"); return; }
+  if(editingId){ const s=DB.islands.find(x=>x.id===editingId); Object.assign(s,{qEn,aEn,qEs,aEs,cat}); }
+  else { DB.islands.push({id:uid(),qEn,aEn,qEs,aEs,cat,box:1,next:todayStr(),added:todayStr()}); }
+  saveDB(); closeModal($("#modalSentence")); renderSentenceList(); renderToday(); toast(editingId?"Saved":"Island added 🏝️");
+};
+$("#sentDelete").onclick=()=>{ if(!editingId) return; DB.islands=DB.islands.filter(x=>x.id!==editingId); saveDB(); closeModal($("#modalSentence")); renderSentenceList(); renderToday(); toast("Deleted"); };
+$("#addSentence").onclick=()=>openSentenceModal(null);
+$("#fabAdd").onclick=()=>openSentenceModal(null);
+
+/* ============ PRACTICE (SRS) + MAINTENANCE re-check ============ */
+let practiceQueue=[], practiceRevealed=false, practiceMode="learn";
+function maintenanceDue(){ const t=todayStr(); return DB.islands.filter(s=>s.mastered && s.maint && s.maint<=t); }
+function startPractice(mode){
+  practiceMode = (mode==="maint")?"maint":"learn";
+  practiceQueue = (practiceMode==="maint" ? maintenanceDue() : dueIslands()).slice().sort(()=>Math.random()-0.5);
+  if(!practiceQueue.length){ toast(practiceMode==="maint"?"No words due for re-check yet 👍":"Nothing due — come back later or add more!"); return; }
+  $("#browseArea").style.display="none"; $("#practiceArea").style.display="block";
+  $("#startPractice").style.display="none"; $("#addSentence").style.display="none"; const lm=$("#loadMore"); if(lm) lm.style.display="none"; const rc=$("#reCheck"); if(rc) rc.style.display="none";
+  $("#pQline").dataset.mode=practiceMode;
+  nextPracticeCard();
+}
+function nextPracticeCard(){
+  practiceRevealed=false;
+  if(!practiceQueue.length){ endPractice(true); return; }
+  const s=practiceQueue[0];
+  const tag = practiceMode==="maint" ? "🔁 Re-check · " : "";
+  if(s.qEs){
+    $("#pQline").textContent=tag+"Answer this in Spanish";
+    $("#pPrompt").innerHTML = esc(s.qEs)+'<span class="qen">'+esc(s.qEn)+'</span>';
+  } else {
+    $("#pQline").textContent=tag+"Say this in Spanish";
+    $("#pPrompt").innerHTML = esc(s.aEn);
+  }
+  $("#pHint").style.display="block";
+  $("#pAnswer").innerHTML="";
+  $("#pReveal").style.display="flex"; $("#pRate").style.display="none";
+  $("#pPos").textContent = practiceQueue.length;
+}
+function revealCard(){
+  const s=practiceQueue[0]; practiceRevealed=true;
+  $("#pHint").style.display="none";
+  $("#pAnswer").innerHTML='<div class="aes">'+esc(s.aEs)+'</div><div class="aen">'+esc(s.aEn)+'</div>';
+  $("#pReveal").style.display="none"; $("#pRate").style.display="flex";
+  speak(s.aEs);
+}
+function gradeCard(good){
+  const s=practiceQueue.shift();
+  if(practiceMode==="maint"){
+    if(good){ s.maintStreak=(s.maintStreak||0)+1; const ladder=[30,60,120,240,365]; setMaint(s, ladder[Math.min(s.maintStreak,ladder.length-1)]); }
+    else { s.box=3; scheduleNext(s); setMaint(s,21); s.maintStreak=0; } // forgotten → back into learning rotation (words stay banked)
+  } else {
+    applyResult(s, good);
+  }
+  DB.today.pr=(DB.today.pr||0)+1; bumpRep(); checkGoal(); saveDB(); nextPracticeCard();
+}
+function bumpRep(){ const t=todayStr(); DB.stats.reps[t]=(DB.stats.reps[t]||0)+1; }
+function endPractice(finished){
+  $("#practiceArea").style.display="none"; $("#browseArea").style.display="block";
+  $("#startPractice").style.display="inline-flex"; $("#addSentence").style.display="inline-flex"; const lm=$("#loadMore"); if(lm) lm.style.display="inline-flex"; const rc=$("#reCheck"); if(rc) rc.style.display="inline-flex";
+  renderSentenceList(); renderToday();
+  if(finished){ markToday("islands"); toast(practiceMode==="maint"?"Re-check complete ✓":"Island practice done ✓"); }
+}
+$("#startPractice").onclick=startPractice;
+$("#pShow").onclick=revealCard;
+$("#pPrompt").onclick=()=>{ if(!practiceRevealed) revealCard(); };
+$("#pSpeak").onclick=()=>{ const s=practiceQueue[0]; if(s) speak(s.qEs); };
+$("#pSpeak2").onclick=()=>{ const s=practiceQueue[0]; if(s) speak(s.aEs); };
+$("#rateGood").onclick=()=>{ markToday("islands"); gradeCard(true); };
+$("#rateAgain").onclick=()=>{ markToday("islands"); gradeCard(false); };
+$("#endPractice").onclick=()=>endPractice(false);
+
+/* ============ LISTEN ============ */
+const player={steps:[],i:0,playing:false,repeats:2,rate:0.9,gap:1200,includeEn:false,includeQ:true,islands:[],_dirty:true};
+function buildListenCategorySelect(){
+  const sel=$("#lCategory"); const cur=sel.value;
+  sel.innerHTML='<option value="__all">All islands</option>'+categories().map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
+  if(cur) sel.value=cur;
+  buildListenList();
+}
+function listenPool(){ const c=$("#lCategory").value; return (c&&c!=="__all") ? DB.islands.filter(s=>s.cat===c) : DB.islands.slice(); }
+function buildListenList(){
+  player.islands=listenPool();
+  const list=$("#listenList"); list.innerHTML="";
+  if(!player.islands.length){ list.innerHTML='<div class="empty">No islands in this category.</div>'; return; }
+  player.islands.forEach((s,idx)=>{
+    const d=document.createElement("div"); d.className="ll-item"; d.dataset.sid=s.id;
+    d.innerHTML=`<span class="num">${idx+1}</span><span>${esc(s.qEs||s.aEs)}</span>`;
+    d.onclick=()=>startListenAt(idx);
+    list.appendChild(d);
+  });
+}
+function buildSteps(){
+  player.steps=[];
+  player.islands.forEach(s=>{
+    if(player.includeEn){ player.steps.push({sid:s.id,text:s.aEn,lang:"en-US"}); }
+    for(let r=0;r<player.repeats;r++){
+      if(player.includeQ && s.qEs) player.steps.push({sid:s.id,text:s.qEs,lang:"es-ES",kind:"q"});
+      player.steps.push({sid:s.id,text:s.aEs,lang:"es-ES",kind:"a"});
+    }
+  });
+}
+function highlightListen(sid){
+  $$("#listenList .ll-item").forEach(x=>x.classList.toggle("playing",x.dataset.sid===sid));
+  const s=DB.islands.find(x=>x.id===sid);
+  if(s){ $("#nowPlaying").innerHTML=(s.qEs?'<div class="nowq">'+esc(s.qEs)+'</div>':'')+'<div class="nowa">'+esc(s.aEs)+'</div><div class="nowen">'+esc(s.aEn)+'</div>'; }
+}
+function setPlayIcon(){ $("#lPlay").textContent = player.playing ? "⏸" : "▶"; }
+function listenTick(){
+  if(!player.playing) return;
+  if(player.i>=player.steps.length){ player.i=0; }
+  const step=player.steps[player.i];
+  highlightListen(step.sid);
+  $("#progFill").style.width = ((player.i/player.steps.length)*100)+"%";
+  speak(step.text, player.rate, step.lang).then(()=>{
+    if(!player.playing) return;
+    setTimeout(()=>{ player.i++; listenTick(); }, player.gap);
+  });
+}
+function startListen(){
+  if(!player.islands.length){ toast("No islands to play"); return; }
+  if(!player.steps.length || player._dirty){ buildSteps(); player._dirty=false; }
+  player.playing=true; setPlayIcon(); markToday("listen"); DB.today.ls=(DB.today.ls||0)+1; checkGoal(); listenTick();
+}
+function pauseListen(){ player.playing=false; setPlayIcon(); try{speechSynthesis.cancel();}catch(e){} }
+function startListenAt(idx){
+  buildSteps(); player._dirty=false;
+  const sid=player.islands[idx].id;
+  player.i=player.steps.findIndex(st=>st.sid===sid); if(player.i<0) player.i=0;
+  player.playing=true; setPlayIcon(); markToday("listen"); listenTick();
+}
+function jumpSentence(dir){
+  if(!player.steps.length) buildSteps();
+  const ids=player.islands.map(s=>s.id);
+  const curSid = player.steps[player.i] ? player.steps[player.i].sid : ids[0];
+  let pos = ids.indexOf(curSid); pos = (pos+dir+ids.length)%ids.length;
+  const sid=ids[pos];
+  player.i=player.steps.findIndex(st=>st.sid===sid); if(player.i<0) player.i=0;
+  try{speechSynthesis.cancel();}catch(e){}
+  if(player.playing) listenTick(); else highlightListen(sid);
+}
+$("#lPlay").onclick=()=>{ player.playing?pauseListen():startListen(); };
+$("#lNext").onclick=()=>jumpSentence(1);
+$("#lPrev").onclick=()=>jumpSentence(-1);
+$("#lCategory").onchange=()=>{ pauseListen(); player.i=0; player._dirty=true; buildListenList(); player.steps=[]; $("#progFill").style.width="0"; };
+$("#lRepeats").oninput=e=>{ player.repeats=+e.target.value; $("#repVal").textContent=e.target.value; player._dirty=true; };
+$("#lRate").oninput=e=>{ player.rate=+e.target.value; $("#rateVal").textContent=(+e.target.value).toFixed(2); };
+$("#lGap").oninput=e=>{ player.gap=+e.target.value*1000; $("#gapVal").textContent=(+e.target.value).toFixed(1); };
+$("#lIncludeEn").onchange=e=>{ player.includeEn=e.target.checked; player._dirty=true; };
+$("#lQuestion").onchange=e=>{ player.includeQ=e.target.checked; player._dirty=true; };
+
+/* ============ RECALL ============ */
+let recCurrent=null, recAnswered=false;
+function recallPool(){ const p=$("#recPool").value; let pool=p==="due"?dueIslands():DB.islands.slice(); if(!pool.length) pool=DB.islands.slice(); return pool; }
+function startRecall(){ $("#recCorrect").textContent=DB.stats.recall.c; $("#recTotal").textContent=DB.stats.recall.t; updatePct(); nextRecall(); }
+function updatePct(){ const r=DB.stats.recall; $("#recPct").textContent=(r.t?Math.round(r.c/r.t*100):0)+"%"; }
+function nextRecall(){
+  recAnswered=false;
+  const pool=recallPool();
+  if(!pool.length){ $("#recPrompt").textContent="Add some islands first 🏝️"; $("#recCtx").textContent=""; return; }
+  recCurrent=pool[Math.floor(Math.random()*pool.length)];
+  const mode=$("#recMode").value;
+  let dir = mode==="mixed" ? (Math.random()<0.5?"es-en":"en-es") : mode;
+  recCurrent._dir=dir;
+  if(dir==="en-es"){
+    $("#recDir").textContent= recCurrent.qEs ? "English answer → Spanish" : "English → Spanish";
+    $("#recCtx").innerHTML = recCurrent.qEs ? ("Question: <b>"+esc(recCurrent.qEs)+"</b> ("+esc(recCurrent.qEn)+")") : "";
+    $("#recPrompt").textContent=recCurrent.aEn;
+    $("#recInput").placeholder="Type your answer in Spanish…";
+    $("#recHear").style.display="none";
+  } else {
+    $("#recDir").textContent= recCurrent.qEs ? "Spanish answer → English" : "Spanish → English";
+    $("#recCtx").innerHTML = recCurrent.qEs ? ("Question: <b>"+esc(recCurrent.qEs)+"</b>") : "";
+    $("#recPrompt").textContent=recCurrent.aEs;
+    $("#recInput").placeholder="Type the meaning in English…";
+    $("#recHear").style.display="inline-flex";
+  }
+  $("#recInput").value=""; $("#recInput").disabled=false;
+  $("#recVerdict").className="verdict";
+  setTimeout(()=>$("#recInput").focus(),50);
+}
+function normalize(t){
+  t=(t||"").toLowerCase().trim();
+  if(DB.settings.ignoreAccents){ t=t.normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+  t=t.replace(/[¿?¡!.,;:"'\u201c\u201d\u2018\u2019()\-]/g,"").replace(/\s+/g," ").trim();
+  return t;
+}
+function checkRecall(){
+  if(recAnswered || !recCurrent) return;
+  const dir=recCurrent._dir;
+  const target = dir==="en-es"?recCurrent.aEs:recCurrent.aEn;
+  showVerdict(normalize($("#recInput").value)===normalize(target), target);
+}
+function showVerdict(ok,target){
+  recAnswered=true; $("#recInput").disabled=true;
+  DB.stats.recall.t++; if(ok) DB.stats.recall.c++;
+  applyResult(recCurrent, ok);
+  bumpRep(); markToday("recall"); DB.today.rc=(DB.today.rc||0)+1; checkGoal(); saveDB();
+  $("#recCorrect").textContent=DB.stats.recall.c; $("#recTotal").textContent=DB.stats.recall.t; updatePct();
+  const v=$("#recVerdict"); v.className="verdict show "+(ok?"ok":"no");
+  $("#recVh").innerHTML = ok?"✓ Correct!":"✗ Not quite";
+  $("#recAnswer").textContent=target;
+  $("#recMarkRight").style.display = ok?"none":"inline-flex";
+  if(recCurrent._dir==="en-es") speak(recCurrent.aEs);
+}
+$("#recCheck").onclick=checkRecall;
+$("#recInput").addEventListener("keydown",e=>{ if((e.ctrlKey||e.metaKey)&&e.key==="Enter"){ checkRecall(); } });
+$("#recNext").onclick=nextRecall;
+$("#recSkip").onclick=nextRecall;
+$("#recHear").onclick=()=>{ if(recCurrent) speak(recCurrent.aEs); };
+$("#recMarkRight").onclick=()=>{
+  DB.stats.recall.c++; updatePct(); $("#recCorrect").textContent=DB.stats.recall.c;
+  recCurrent.box=Math.min(5,(recCurrent.box||1)+1);
+  scheduleNext(recCurrent);
+  if(recCurrent.box>=5 && !recCurrent.mastered){ const n=newWordsIfMastered(recCurrent); recCurrent.mastered=true; celebrateMastery(n); }
+  saveDB(); $("#recVh").innerHTML="✓ Counted as correct"; $("#recVerdict").className="verdict show ok"; $("#recMarkRight").style.display="none";
+};
+$("#recMode").onchange=nextRecall;
+$("#recPool").onchange=nextRecall;
+
+/* ============ GRAMMAR ============ */
+function currentMaxWeek(){ return DB.grammar.reduce((m,g)=>Math.max(m,g.week||1),1); }
+function renderGrammar(){
+  const wrap=$("#grammarList"); wrap.innerHTML="";
+  const weeks=[...new Set(DB.grammar.map(g=>g.week||1))].sort((a,b)=>b-a);
+  const maxW=currentMaxWeek();
+  if(!weeks.length){ wrap.innerHTML='<div class="empty"><div class="big">📐</div>No rules yet. Add your first two for this week.</div>'; return; }
+  weeks.forEach(wk=>{
+    const head=document.createElement("div"); head.className="gweek";
+    head.innerHTML=`<h3>Week ${wk}</h3>`+(wk===maxW?'<span class="badge">This week · review daily</span>':"");
+    wrap.appendChild(head);
+    DB.grammar.filter(g=>(g.week||1)===wk).forEach(g=>{
+      const d=document.createElement("div"); d.className="grule";
+      d.innerHTML=`<h4>${esc(g.title)} <button class="btn icon sm" data-gedit="${g.id}" style="margin-left:auto;font-size:13px">✎</button></h4>
+        <div class="exp">${esc(g.exp)}</div>
+        ${(g.ex||[]).map(e=>`<div class="gex"><button class="btn icon" data-gspeak="${esc(e.es)}" style="padding:6px;font-size:13px">🔊</button><div><div class="gx-es">${esc(e.es)}</div><div class="gx-en">${esc(e.en)}</div></div></div>`).join("")}`;
+      wrap.appendChild(d);
+    });
+  });
+  wrap.querySelectorAll("[data-gspeak]").forEach(b=>b.onclick=()=>speak(b.dataset.gspeak));
+  wrap.querySelectorAll("[data-gedit]").forEach(b=>b.onclick=()=>openGrammarModal(b.dataset.gedit));
+  markToday("grammar");
+}
+let editingGram=null;
+function exRow(es="",en=""){
+  const div=document.createElement("div"); div.className="row2";
+  div.innerHTML=`<input class="gx-in-es" placeholder="Spanish example" value="${esc(es)}">
+    <input class="gx-in-en" placeholder="English" value="${esc(en)}">
+    <button class="btn icon" title="Remove">✕</button>`;
+  div.querySelector("button").onclick=()=>div.remove();
+  return div;
+}
+function openGrammarModal(id){
+  editingGram=id||null; const list=$("#exList"); list.innerHTML="";
+  if(id){
+    const g=DB.grammar.find(x=>x.id===id);
+    $("#gTitle").value=g.title; $("#gExp").value=g.exp; $("#gWeek").value=g.week||1;
+    (g.ex||[]).forEach(e=>list.appendChild(exRow(e.es,e.en))); $("#gramDelete").style.display="inline-flex";
+  }else{
+    $("#gTitle").value=""; $("#gExp").value=""; $("#gWeek").value=currentMaxWeek(); list.appendChild(exRow()); $("#gramDelete").style.display="none";
+  }
+  openModal("modalGrammar");
+}
+$("#addEx").onclick=()=>$("#exList").appendChild(exRow());
+$("#gramSave").onclick=()=>{
+  const title=$("#gTitle").value.trim(), exp=$("#gExp").value.trim(), week=+$("#gWeek").value||1;
+  if(!title){ toast("Add a title"); return; }
+  const ex=Array.from($("#exList").querySelectorAll(".row2")).map(r=>({es:r.querySelector(".gx-in-es").value.trim(),en:r.querySelector(".gx-in-en").value.trim()})).filter(e=>e.es);
+  if(editingGram){ const g=DB.grammar.find(x=>x.id===editingGram); g.title=title; g.exp=exp; g.week=week; g.ex=ex; }
+  else { DB.grammar.push({id:uid(),title,exp,week,ex}); }
+  saveDB(); closeModal($("#modalGrammar")); renderGrammar(); toast(editingGram?"Saved":"Rule added 📐");
+};
+$("#gramDelete").onclick=()=>{ if(!editingGram)return; DB.grammar=DB.grammar.filter(x=>x.id!==editingGram); saveDB(); closeModal($("#modalGrammar")); renderGrammar(); };
+$("#addGrammar").onclick=()=>openGrammarModal(null);
+
+/* ============ SETTINGS ============ */
+function populateVoiceSelect(){
+  const sel=$("#setVoice"); if(!sel) return; const es=spanishVoices();
+  sel.innerHTML = es.length ? es.map(v=>`<option value="${v.voiceURI}">${v.name} (${v.lang})</option>`).join("") : '<option value="">No Spanish voice found on this device</option>';
+  if(DB && DB.settings.voiceURI) sel.value=DB.settings.voiceURI;
+}
+$("#btnSettings").onclick=()=>{ populateVoiceSelect(); $("#setRate").value=DB.settings.rate; $("#setRateVal").textContent=DB.settings.rate; $("#setAccents").checked=DB.settings.ignoreAccents; $("#setGoal").value=DB.settings.goal||"standard"; $("#setReminder").value=DB.settings.reminderTime||""; openModal("modalSettings"); };
+$("#setRate").oninput=e=>$("#setRateVal").textContent=(+e.target.value).toFixed(2);
+$("#setSave").onclick=()=>{
+  DB.settings.voiceURI=$("#setVoice").value; DB.settings.rate=+$("#setRate").value; DB.settings.ignoreAccents=$("#setAccents").checked;
+  DB.settings.goal=$("#setGoal").value; DB.settings.reminderTime=$("#setReminder").value;
+  player.rate=DB.settings.rate; $("#lRate").value=DB.settings.rate; $("#rateVal").textContent=DB.settings.rate.toFixed(2);
+  saveDB(); closeModal($("#modalSettings")); renderToday(); scheduleReminder(); toast("Settings saved");
+};
+$("#addCalendar").onclick=()=>{ const t=$("#setReminder").value||DB.settings.reminderTime; if(!t){ toast("Pick a reminder time first"); return; } downloadICS(t); };
+
+/* ============ BACKUP / EXPORT ============ */
+$("#btnBackup").onclick=()=>openModal("modalBackup");
+function download(filename,text,type){
+  const blob=new Blob([text],{type:type||"text/plain"}); const url=URL.createObjectURL(blob);
+  const a=document.createElement("a"); a.href=url; a.download=filename; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },500);
+}
+$("#doExport").onclick=()=>{ download("mis-islas-backup-"+todayStr()+".json", JSON.stringify(DB,null,2), "application/json"); toast("Exported"); };
+$("#doImportBtn").onclick=()=>$("#importFile").click();
+$("#importFile").onchange=e=>{
+  const f=e.target.files[0]; if(!f) return; const r=new FileReader();
+  r.onload=()=>{ try{ const data=JSON.parse(r.result); if(!data.islands && !data.sentences) throw 0; DB=data; loadDefaults(); saveDB(); toast("Imported ✓"); showView("today"); }catch(err){ toast("Invalid file"); } };
+  r.readAsText(f);
+};
+$("#doAudioScript").onclick=()=>{
+  let txt="MIS ISLAS — Spanish listening script\nGenerated "+todayStr()+"\n\nPaste into a text-to-speech tool, set a Spanish voice (~0.9x speed), export as MP3. Each answer repeats with pauses for shadowing.\n\n";
+  const byCat={}; DB.islands.forEach(s=>{ (byCat[s.cat]=byCat[s.cat]||[]).push(s); });
+  Object.keys(byCat).forEach(cat=>{
+    txt+="\n=== "+cat.toUpperCase()+" ===\n\n";
+    byCat[cat].forEach((s,i)=>{
+      txt+=(i+1)+". "+s.qEn+"\n";
+      txt+=s.qEs+" ...\n";
+      txt+=s.aEs+" ... "+s.aEs+" ...\n\n";
+    });
+  });
+  download("mis-islas-audio-script-"+todayStr()+".txt", txt); toast("Script downloaded");
+};
+
+/* ============ WORDS modal ============ */
+let wordsTab="learned";
+function openWordsModal(){ wordsTab="learned"; renderWordsModal(); openModal("modalWords"); }
+function renderWordsModal(){
+  const learned = learnedWordSet();
+  const corpus = corpusWordSet();
+  const todo = [...corpus].filter(w=>!learned.has(w));
+  $("#wtLearned").classList.toggle("active",wordsTab==="learned");
+  $("#wtTodo").classList.toggle("active",wordsTab==="todo");
+  $("#wtLearned").textContent="Learned ("+learned.size+")";
+  $("#wtTodo").textContent="Still to bank ("+todo.length+")";
+  const next=(Math.floor(learned.size/MILESTONE)+1)*MILESTONE;
+  $("#wordsSummary").innerHTML="<b>"+fmt(learned.size)+"</b> unique Spanish words banked from mastered islands · <b>"+fmt(next-learned.size)+"</b> more to reach "+fmt(next)+".";
+  const arr=(wordsTab==="learned"?[...learned]:todo).sort((a,b)=>a.localeCompare(b,"es"));
+  const body=$("#wordsBody");
+  if(!arr.length){ body.innerHTML='<div class="empty">'+(wordsTab==="learned"?"No words yet — master an island to bank its words. Use the “Know it?” button on a card, or get it right enough times in Practice/Recall.":"Every word in your islands is banked. 🎉")+'</div>'; return; }
+  body.innerHTML='<div class="wordchips">'+arr.map(w=>'<span class="wchip'+(wordsTab==="todo"?" todo":"")+'">'+esc(w)+'</span>').join("")+'</div>';
+}
+$("#vocabHero").onclick=openWordsModal;
+$("#wtLearned").onclick=()=>{ wordsTab="learned"; renderWordsModal(); };
+$("#wtTodo").onclick=()=>{ wordsTab="todo"; renderWordsModal(); };
+
+
+/* ============ Island LIBRARY (load more) ============ */
+const LIBRARY = [{"kind": "qa", "qEn": "Where do you live?", "aEn": "", "qEs": "¿Dónde vive?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you coach people from many countries?", "aEn": "", "qEs": "¿Entrenas a personas de muchos países?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What kind of clients do you coach?", "aEn": "", "qEs": "¿Qué tipo de clientes asesoras?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you coach beginners?", "aEn": "", "qEs": "¿Das clases a principiantes?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you coach professional bodybuilders?", "aEn": "", "qEs": "¿Entrenas a culturistas profesionales?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Why did you start bodybuilding?", "aEn": "", "qEs": "¿Por qué empezaste a practicar culturismo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "When did you start training?", "aEn": "", "qEs": "¿Cuándo comenzaste a entrenar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "How many days a week do you train?", "aEn": "", "qEs": "¿Cuántos días a la semana entrenas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your favorite muscle group to train?", "aEn": "", "qEs": "¿Cuál es tu grupo muscular favorito para entrenar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your least favorite exercise?", "aEn": "", "qEs": "¿Cuál es el ejercicio que menos te gusta?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you prefer machines or free weights?", "aEn": "", "qEs": "¿Prefieres máquinas o pesas libres?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your favorite gym?", "aEn": "", "qEs": "¿Cuál es tu gimnasio favorito?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you train in the morning or evening?", "aEn": "", "qEs": "¿Entrenas por la mañana o por la tarde?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What do you eat before training?", "aEn": "", "qEs": "¿Qué comes antes de entrenar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What do you eat after training?", "aEn": "", "qEs": "¿Qué comes después de entrenar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you drink coffee before the gym?", "aEn": "", "qEs": "¿Tomas café antes de ir al gimnasio?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "How many meals do you eat every day?", "aEn": "", "qEs": "¿Cuántas comidas haces al día?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you track calories?", "aEn": "", "qEs": "¿Llevas la cuenta de las calorías?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do your clients track calories?", "aEn": "", "qEs": "¿Tus clientes controlan las calorías que queman?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your favorite healthy food?", "aEn": "", "qEs": "¿Cuál es tu comida saludable favorita?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your favorite cheat meal?", "aEn": "", "qEs": "¿Cuál es tu comida trampa favorita?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you cook often?", "aEn": "", "qEs": "¿Cocinas a menudo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Does your wife cook too?", "aEn": "", "qEs": "¿Tu esposa también cocina?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What supplements do you use?", "aEn": "", "qEs": "¿Qué suplementos utilizas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you drink protein shakes every day?", "aEn": "", "qEs": "¿Tomas batidos de proteínas todos los días?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What advice do you give new clients?", "aEn": "", "qEs": "¿Qué consejos les das a los nuevos clientes?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Is bodybuilding popular in your country?", "aEn": "", "qEs": "¿Es popular el culturismo en tu país?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you travel for competitions?", "aEn": "", "qEs": "¿Viajas para participar en competiciones?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What countries have you visited?", "aEn": "", "qEs": "¿Qué países has visitado?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you like training when you travel?", "aEn": "", "qEs": "¿Te gusta entrenar cuando viajas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you help clients with nutrition?", "aEn": "", "qEs": "¿Ayudas a tus clientes con la nutrición?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you write training programs?", "aEn": "", "qEs": "¿Escribes programas de formación?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "How do clients contact you?", "aEn": "", "qEs": "¿Cómo se ponen en contacto con usted los clientes?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you use WhatsApp for work?", "aEn": "", "qEs": "¿Utilizas WhatsApp para trabajar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you make videos for clients?", "aEn": "", "qEs": "¿Realizas vídeos para clientes?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you check clients every week?", "aEn": "", "qEs": "¿Revisas a los clientes todas las semanas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is the hardest part of your job?", "aEn": "", "qEs": "¿Cuál es la parte más difícil de tu trabajo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is the best part of your job?", "aEn": "", "qEs": "¿Qué es lo que más te gusta de tu trabajo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you enjoy helping people?", "aEn": "", "qEs": "¿Te gusta ayudar a la gente?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What time do you start work?", "aEn": "", "qEs": "¿A qué hora empiezas a trabajar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What time do you finish work?", "aEn": "", "qEs": "¿A qué hora terminas de trabajar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you work on weekends?", "aEn": "", "qEs": "¿Trabajas los fines de semana?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you prefer online coaching?", "aEn": "", "qEs": "¿Prefieres el entrenamiento online?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do your clients send progress photos?", "aEn": "", "qEs": "¿Sus clientes envían fotos del proceso?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you make meal plans?", "aEn": "", "qEs": "¿Planificas las comidas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "How many hours do you work every day?", "aEn": "", "qEs": "¿Cuántas horas trabajas al día?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you like your job?", "aEn": "", "qEs": "¿Te gusta tu trabajo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What motivates you?", "aEn": "", "qEs": "¿Qué te motiva?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Who inspires you in bodybuilding?", "aEn": "", "qEs": "¿Quién te inspira en el culturismo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Did you play sports when you were young?", "aEn": "", "qEs": "¿Practicabas algún deporte cuando eras joven?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your favorite exercise for legs?", "aEn": "", "qEs": "¿Cuál es tu ejercicio favorito para las piernas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your favorite exercise for shoulders?", "aEn": "", "qEs": "¿Cuál es tu ejercicio favorito para los hombros?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you train with your wife?", "aEn": "", "qEs": "¿Entrenas con tu esposa?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you listen to music in the gym?", "aEn": "", "qEs": "¿Escuchas música en el gimnasio?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What music do you listen to?", "aEn": "", "qEs": "¿Qué música escuchas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you like cardio?", "aEn": "", "qEs": "¿Te gusta el ejercicio cardiovascular?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "How often do you do cardio?", "aEn": "", "qEs": "¿Con qué frecuencia haces ejercicio cardiovascular?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What advice do you give for fat loss?", "aEn": "", "qEs": "¿Qué consejos darías para perder grasa?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What advice do you give for muscle gain?", "aEn": "", "qEs": "¿Qué consejos das para ganar masa muscular?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you have many male clients?", "aEn": "", "qEs": "¿Tienes muchos clientes masculinos?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you have many female clients?", "aEn": "", "qEs": "¿Tienes muchas clientas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What do your clients usually want?", "aEn": "", "qEs": "¿Qué suelen querer sus clientes?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do clients find your business on Instagram?", "aEn": "", "qEs": "¿Tus clientes encuentran tu negocio en Instagram?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you post on social media every day?", "aEn": "", "qEs": "¿Publicas en redes sociales todos los días?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you enjoy social media?", "aEn": "", "qEs": "¿Te gustan las redes sociales?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Is it difficult to own a business?", "aEn": "", "qEs": "¿Es difícil tener un negocio propio?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your biggest business goal?", "aEn": "", "qEs": "¿Cuál es tu principal objetivo empresarial?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you want more coaches in the future?", "aEn": "", "qEs": "¿Quieren más entrenadores en el futuro?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you work from home sometimes?", "aEn": "", "qEs": "¿Trabajas a veces desde casa?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What coffee do you usually drink?", "aEn": "", "qEs": "¿Qué café sueles tomar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you like cafés?", "aEn": "", "qEs": "¿Te gustan los cafés?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your favorite city for food?", "aEn": "", "qEs": "¿Cuál es tu ciudad favorita para comer?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you speak other languages?", "aEn": "", "qEs": "¿Hablas otros idiomas?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Why do people choose your coaching?", "aEn": "", "qEs": "¿Por qué la gente elige tu servicio de coaching?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you coach natural athletes?", "aEn": "", "qEs": "¿Entrenas a atletas con talento natural?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you coach competitors before shows?", "aEn": "", "qEs": "¿Preparas a los competidores antes de las competiciones?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What do clients eat during prep?", "aEn": "", "qEs": "¿Qué comen los clientes durante la preparación?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Is prep difficult?", "aEn": "", "qEs": "¿Es difícil la preparación?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "How do clients feel before competitions?", "aEn": "", "qEs": "¿Cómo se sienten los clientes antes de las competiciones?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you enjoy working with professional athletes?", "aEn": "", "qEs": "¿Te gusta trabajar con atletas profesionales?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your favorite part of bodybuilding culture?", "aEn": "", "qEs": "¿Cuál es tu parte favorita de la cultura del culturismo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your least favorite part of bodybuilding culture?", "aEn": "", "qEs": "¿Qué es lo que menos te gusta de la cultura del culturismo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you read about nutrition science?", "aEn": "", "qEs": "¿Lees sobre ciencia de la nutrición?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you enjoy learning about the human body?", "aEn": "", "qEs": "¿Te gusta aprender sobre el cuerpo humano?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What do you do when you are not working?", "aEn": "", "qEs": "¿Qué haces cuando no estás trabajando?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you relax on Sundays?", "aEn": "", "qEs": "¿Te relajas los domingos?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What are your future plans for the business?", "aEn": "", "qEs": "¿Cuáles son sus planes futuros para el negocio?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Do you want to travel more in the future?", "aEn": "", "qEs": "¿Te gustaría viajar más en el futuro?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What is your dream place to visit?", "aEn": "", "qEs": "¿Cuál es el lugar de tus sueños para visitar?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What advice do you give people who want to start a business?", "aEn": "", "qEs": "¿Qué consejos les darías a las personas que quieren emprender un negocio?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "Are you happy with your career?", "aEn": "", "qEs": "¿Estás satisfecho con tu carrera profesional?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "What do you love most about your work?", "aEn": "", "qEs": "¿Qué es lo que más te gusta de tu trabajo?", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "", "aEn": "", "qEs": "#VALUE!", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "", "aEn": "", "qEs": "#VALUE!", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "", "aEn": "", "qEs": "#VALUE!", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "", "aEn": "", "qEs": "#VALUE!", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "", "aEn": "", "qEs": "#VALUE!", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "", "aEn": "", "qEs": "#VALUE!", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "qa", "qEn": "", "aEn": "", "qEs": "#VALUE!", "aEs": "#VALUE!", "cat": "Work"}, {"kind": "st", "qEn": "", "aEn": "I like to start my day with a black filter coffee", "qEs": "", "aEs": "Me gusta empezar el día con un café negro filtrado.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "Normally I dont eat breakfast until 11am, sometimes 12pm because I prefer to delay eating until later", "qEs": "", "aEs": "Normalmente no desayuno hasta las 11 de la mañana, a veces hasta las 12 del mediodía porque prefiero retrasar la comida hasta más tarde.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "I like to delay eating because it then I can eat 4 bigger meals and im also not hungry in the morning", "qEs": "", "aEs": "Me gusta retrasar la comida porque así puedo comer cuatro comidas más abundantes y tampoco tengo hambre por la mañana.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "Usually I eat one meal before I train, then three more meals before i go to bed bed", "qEs": "", "aEs": "Normalmente como una comida antes de entrenar y luego tres comidas más antes de irme a la cama.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "I don't eat normal food for breakfast. Instead I eat meat with vegetables and a big bowl of fruit", "qEs": "", "aEs": "No desayuno comida normal. En cambio, como carne con verduras y un gran tazón de fruta.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "I dont really have a favourite food but if I had to choose, I think it would be arabic food", "qEs": "", "aEs": "Realmente no tengo una comida favorita, pero si tuviera que elegir, creo que sería la comida árabe.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "I like to go to different restaurants every week with my wife, especially for things we can't cook at home", "qEs": "", "aEs": "Me gusta ir a restaurantes diferentes cada semana con mi esposa, especialmente para comer cosas que no podemos cocinar en casa.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "Every Tuesday my wife and I cook dinner for eachother but it has to match a theme", "qEs": "", "aEs": "Todos los martes mi esposa y yo cocinamos la cena el uno para el otro, pero tiene que tener un tema en común.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "An example of a theme could be 'layers' so then we have to make something with layers like a sandwhich", "qEs": "", "aEs": "Un ejemplo de tema podría ser \"capas\", así que tenemos que hacer algo con capas como un sándwich.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "Another example could be \"korean\" so we have to cook korean food", "qEs": "", "aEs": "Otro ejemplo podría ser \"coreano\", así que tenemos que cocinar comida coreana.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "I will try almost anything when it comes to food", "qEs": "", "aEs": "Estoy dispuesta a probar casi cualquier cosa cuando se trata de comida.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "I have eaten beef tongue, pork throat and pork brains, which I had on a taco in Mexico", "qEs": "", "aEs": "He comido lengua de res, garganta de cerdo y sesos de cerdo, que comí en un taco en México.", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Food"}, {"kind": "st", "qEn": "", "aEn": "Hi my name is Dean, nice to meet you", "qEs": "", "aEs": "Hola, me llamo Dean, encantado de conocerte.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "I am from Australia but at the moment I live in portugal", "qEs": "", "aEs": "Soy de Australia, pero actualmente vivo en Portugal.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "I am thirty nine years old and my wife and I have been together for thirteen years", "qEs": "", "aEs": "Tengo treinta y nueve años y mi esposa y yo llevamos juntos trece años.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "I am learning spanish because I stay in Spain 5 to 6 months per year and I also like the language", "qEs": "", "aEs": "Estoy aprendiendo español porque paso entre 5 y 6 meses al año en España y además me gusta el idioma.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "I am also learning spanish because I want to become a spanish citizen and I have some clients who are spanish too", "qEs": "", "aEs": "También estoy aprendiendo español porque quiero obtener la ciudadanía española y tengo algunos clientes que también son españoles.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "I am a bodybuilding coach and work online. I co-own the business with my wife", "qEs": "", "aEs": "Soy entrenador de culturismo y trabajo online. Soy copropietario del negocio junto con mi esposa.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "We have three staff members, one is an adminstrator from the phillipines and the other two are coaches like me but they are from England", "qEs": "", "aEs": "Tenemos tres empleados, uno es un administrador de Filipinas y los otros dos son entrenadores como yo, pero son de Inglaterra.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "My clients are mainly in Australia but I have clients in America, Belgium, The netherlands, England and Bali", "qEs": "", "aEs": "Mis clientes se encuentran principalmente en Australia, pero también tengo clientes en Estados Unidos, Bélgica, los Países Bajos, Inglaterra y Bali.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "Currently I live in three different countries each year. I live in portugal for six months, spain for four months and somewhere new every year for two months", "qEs": "", "aEs": "Actualmente vivo en tres países diferentes cada año. Vivo en Portugal durante seis meses, en España durante cuatro meses y en un lugar nuevo cada año durante dos meses.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "I have a university degree in exercise science and have been a fulltime bodybuilding coach for twelve years", "qEs": "", "aEs": "Tengo un título universitario en ciencias del ejercicio y he sido entrenador de culturismo a tiempo completo durante doce años.", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "About Me"}, {"kind": "st", "qEn": "", "aEn": "Hey mate, how many sets do you have left?", "qEs": "", "aEs": "Hola, ¿cuántos juegos te quedan?", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "No problem, can we share?", "qEs": "", "aEs": "No hay problema, ¿podemos compartir?", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "Can you help me for this set?", "qEs": "", "aEs": "¿Puedes ayudarme con este conjunto?", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "I have two more sets but we can share", "qEs": "", "aEs": "Tengo dos juegos más, pero podemos compartirlos.", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "How long have you been training for?", "qEs": "", "aEs": "¿Cuánto tiempo llevas entrenando?", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "I have been training for maybe fifteen years, I started bodybuilding when I was twenty two", "qEs": "", "aEs": "Llevo entrenando unos quince años; empecé a practicar culturismo cuando tenía veintidós años.", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "I used to compete but i am a bodybuilding coach", "qEs": "", "aEs": "Solía ​​competir, pero ahora soy entrenador de culturismo.", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "When I was younger, I played football", "qEs": "", "aEs": "Cuando era más joven, jugaba al fútbol.", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}, {"kind": "st", "qEn": "", "aEn": "", "qEs": "", "aEs": "#VALUE!", "cat": "Things About Training And Exercise"}];
+function libRemaining(){ return Math.max(0, LIBRARY.length-(DB.libCursor||0)); }
+function updateLoadMoreLabel(){ const b=$("#loadMore"); if(b){ const r=libRemaining(); b.textContent = r>0 ? ("⬇ Load more ("+r+")") : "✓ All loaded"; b.disabled = r<=0; } }
+function loadMore(n){
+  const start=DB.libCursor||0;
+  const batch=LIBRARY.slice(start,start+n);
+  if(!batch.length){ toast("Library complete — all loaded! 🎉"); return; }
+  batch.forEach(it=>DB.islands.push(Object.assign({id:uid(),box:1,next:todayStr(),added:todayStr(),mastered:false}, it)));
+  DB.libCursor=start+batch.length;
+  saveDB(); renderSentenceList(); renderToday(); buildListenCategorySelect(); updateLoadMoreLabel();
+  toast("Loaded "+batch.length+" new islands ✚ — now in Listen & Recall too");
+}
+$("#loadMore").onclick=()=>{
+  const remaining=libRemaining();
+  if(remaining<=0){ toast("Library complete — you've loaded them all!"); return; }
+  const unmastered=DB.islands.filter(s=>!s.mastered).length;
+  const n=Math.min(8,remaining);
+  let go=true;
+  if(unmastered>0){ try{ go=confirm("You still have "+unmastered+" island(s) to master.\nThe method works best if you learn your current set first.\n\nLoad "+n+" more anyway?  ("+remaining+" left in your library)"); }catch(e){ go=true; } }
+  if(go) loadMore(n);
+};
+
+/* ============ Grammar generator (from YOUR islands) ============ */
+const GRAMMAR_LESSONS = [
+  {key:"ir_a", test:t=>/\b(voy|vas|va|vamos|van)\s+a\s+[a-záéíóúñ]+/i.test(t),
+   title:"Near future: \u201cir a\u201d + infinitive",
+   exp:"To say what you are going to do, use IR (voy, vas, va, vamos, van) + \u201ca\u201d + an infinitive. It is the simplest way to talk about the future.",
+   ex:[{es:"Voy a entrenar mañana.",en:"I am going to train tomorrow."},{es:"Vamos a hablar en la reunión.",en:"We are going to talk in the meeting."}]},
+  {key:"ser_estar", test:t=>/\b(soy|eres|es|somos|son)\b/i.test(t)&&/\b(estoy|estás|esta|está|estamos|están)\b/i.test(t),
+   title:"Ser vs Estar",
+   exp:"SER = identity / permanent (Soy entrenador). ESTAR = states, feelings, location (Estoy cansado; Estoy en el gimnasio).",
+   ex:[{es:"Soy entrenador.",en:"I am a coach."},{es:"Estoy en el gimnasio.",en:"I'm at the gym."}]},
+  {key:"preterite", test:t=>/\b(fue|fueron|fui|comenzó|empezó|terminé|terminó|tuve|tuvo|hice|hizo|estuvo|comí|comió)\b/i.test(t)||/\b[a-záéíóúñ]{3,}(ó|aron|ieron)\b/i.test(t),
+   title:"Past tense: the preterite",
+   exp:"The preterite is for completed past actions. Key irregulars: ser/ir → fui/fue, tener → tuve, hacer → hice. Regular -ar verbs: -é, -aste, -ó.",
+   ex:[{es:"El negocio comenzó hace doce años.",en:"The business started twelve years ago."},{es:"Mi esposa fue entrenadora.",en:"My wife was a coach."}]},
+  {key:"gustar", test:t=>/\b(me|te|le|nos|les)\s+gust/i.test(t),
+   title:"The verb \u201cgustar\u201d (to like)",
+   exp:"Gustar works backwards: the thing liked is the subject. \u201cMe gusta el café\u201d literally = \u201ccoffee is pleasing to me\u201d. Use gusta + singular/infinitive, gustan + plural.",
+   ex:[{es:"Me gusta empezar el día con café.",en:"I like to start the day with coffee."},{es:"Me gustan los restaurantes nuevos.",en:"I like new restaurants."}]},
+  {key:"present_cont", test:t=>/\b(estoy|estás|está|estamos|están)\s+[a-záéíóúñ]+(ando|iendo)\b/i.test(t),
+   title:"Present continuous (-ando / -iendo)",
+   exp:"For actions happening right now, use ESTAR + gerund: -ar verbs → -ando, -er/-ir verbs → -iendo. \u201cEstoy escribiendo\u201d = I am writing.",
+   ex:[{es:"Estoy escribiendo un informe.",en:"I am writing a report."},{es:"Estamos entrenando ahora.",en:"We are training now."}]},
+  {key:"reflexive", test:t=>/[a-záéíóúñ]+rse\b/i.test(t)||/\b(me|te|se|nos)\s+(preparo|prepara|levanto|siento|llamo|llama)\b/i.test(t),
+   title:"Reflexive verbs (prepararse, llamarse)",
+   exp:"Reflexive verbs take a pronoun (me, te, se, nos) when the action is done to oneself; infinitives end in -se. \u201cMe preparo\u201d = I get (myself) ready.",
+   ex:[{es:"Me preparo para el trabajo.",en:"I get ready for work."},{es:"Ayudo a personas a prepararse.",en:"I help people prepare."}]},
+  {key:"relative", test:t=>/\bcon (el|la|los|las) que\b/i.test(t)||/\bquien(es)?\b/i.test(t)||/\bque\b/i.test(t),
+   title:"Joining ideas with \u201cque\u201d",
+   exp:"\u201cque\u201d links two ideas into one (that / which / who): \u201cel equipo que trabaja conmigo\u201d. It keeps your islands flowing like natural speech.",
+   ex:[{es:"Las personas con las que trabajo.",en:"The people I work with."},{es:"Un negocio que comenzó hace años.",en:"A business that started years ago."}]},
+  {key:"comparatives", test:t=>/\btanto\b[\s\S]{0,40}\bcomo\b/i.test(t)||/\bmás\b/i.test(t)||/\bmejor\b/i.test(t),
+   title:"Comparisons (más… que, tanto… como)",
+   exp:"Compare with \u201cmás … que\u201d (more … than) and \u201ctanto … como\u201d (both … and / as much as). \u201cmás grande que\u201d = bigger than.",
+   ex:[{es:"Tanto la división amateur como la profesional.",en:"Both the amateur and the professional division."},{es:"Quiero hablar mejor español.",en:"I want to speak better Spanish."}]},
+  {key:"present_ar", test:t=>/\b[a-záéíóúñ]{2,}(amos|as|an)\b/i.test(t),
+   title:"Present tense: regular -AR verbs",
+   exp:"Drop -ar, add -o, -as, -a, -amos, -áis, -an. Covers trabajar, ayudar, entrenar, cocinar… \u201cYo trabajo, tú trabajas, él trabaja.\u201d",
+   ex:[{es:"Trabajo con un buen equipo.",en:"I work with a good team."},{es:"Ayudamos a muchas personas.",en:"We help many people."}]}
+];
+function islandExampleFor(L){
+  for(const s of DB.islands){ const t=((s.aEs||"")+" "+(s.qEs||"")).trim(); if(t && L.test(t)){ const es=s.aEs||s.qEs, en=s.aEn||s.qEn; if(es) return {es,en}; } }
+  return null;
+}
+function generateGrammar(){
+  const covered=new Set(DB.grammarCovered||[]);
+  const text=DB.islands.map(s=>((s.qEs||"")+" "+(s.aEs||""))).join(" ");
+  let present=GRAMMAR_LESSONS.filter(L=>!covered.has(L.key) && L.test(text));
+  if(present.length<2){ GRAMMAR_LESSONS.forEach(L=>{ if(!covered.has(L.key) && present.indexOf(L)<0) present.push(L); }); }
+  const pick=present.slice(0,2);
+  if(!pick.length){ toast("All lessons generated — add or load more islands for new ones."); return; }
+  const week = DB.grammar.length ? currentMaxWeek()+1 : 1;
+  pick.forEach(L=>{
+    const ex=[]; const own=islandExampleFor(L); if(own) ex.push(own);
+    L.ex.forEach(e=>{ if(ex.length<3) ex.push(e); });
+    DB.grammar.push({id:uid(),week:week,title:L.title+(own?" · from your island":""),exp:L.exp,ex:ex});
+    (DB.grammarCovered=DB.grammarCovered||[]).push(L.key);
+  });
+  saveDB(); renderGrammar(); toast("✨ Added "+pick.length+" rule"+(pick.length>1?"s":"")+" (week "+week+")");
+}
+$("#genGrammar").onclick=generateGrammar;
+
+/* ============ ULTIMATE: targets, levels, session, vault, reminders ============ */
+const TARGETS = { light:{pr:3,rc:5,ls:1}, standard:{pr:8,rc:10,ls:1}, serious:{pr:20,rc:20,ls:2} };
+function currentTarget(){ return TARGETS[DB.settings.goal||"standard"]||TARGETS.standard; }
+const CORE = ["islands","listen","recall"];
+function coreDoneCount(){ return CORE.filter(k=>DB.today[k]).length; }
+function goalPct(){ return coreDoneCount()/CORE.length; }
+
+const LEVELS = ["Principiante","Explorador","Isleño","Navegante","Conversador","Fluido","Capitán","Maestro"];
+function levelInfo(){ const w=learnedCount(); const n=Math.floor(w/100); return {n, name:LEVELS[Math.min(n,LEVELS.length-1)], inLevel:w%100}; }
+
+function confetti(){
+  let host=$("#confetti"); if(!host){ host=document.createElement("div"); host.id="confetti"; document.body.appendChild(host); }
+  const cols=["#d9a441","#c5562f","#1c7d74","#0e5751","#e08a4f","#2f8a5b"];
+  for(let i=0;i<70;i++){ const b=document.createElement("div"); b.className="confetti-bit";
+    b.style.left=Math.random()*100+"vw"; b.style.background=cols[i%cols.length];
+    b.style.animationDuration=(1.6+Math.random()*1.6)+"s"; b.style.animationDelay=(Math.random()*0.3)+"s";
+    b.style.transform="translateY(0) rotate("+(Math.random()*360)+"deg)";
+    host.appendChild(b); setTimeout(()=>b.remove(),3600);
+  }
+}
+let goalCelebrated=false;
+function checkGoal(){
+  if(goalPct()>=1 && !DB.today.goalDone){ DB.today.goalDone=true; saveDB(); confetti(); toast("🎯 Daily target complete! Streak safe."); }
+}
+
+function greetingText(){ const h=new Date().getHours(); if(h<12) return "Buenos días 👋"; if(h<20) return "Buenas tardes 👋"; return "Buenas noches 👋"; }
+
+function nextTask(){
+  if(!DB.today.islands && dueIslands().length) return {key:"islands",label:"Practise your due islands"};
+  if(!DB.today.islands) return {key:"islands",label:"Practise your islands"};
+  if(!DB.today.listen) return {key:"listen",label:"Listen to your islands"};
+  if(!DB.today.recall) return {key:"recall",label:"Do an active-recall test"};
+  if(maintenanceDue().length) return {key:"maint",label:"Re-check "+maintenanceDue().length+" mastered island(s)"};
+  return null;
+}
+function renderSessionHero(){
+  const pct=goalPct(); const C=327;
+  $("#goalRing").style.strokeDashoffset = C*(1-pct);
+  $("#goalPct").textContent = Math.round(pct*100)+"%";
+  const lv=levelInfo();
+  $("#levelChip").textContent = "Nivel "+lv.n+" · "+lv.name;
+  $("#streakChip").textContent = "🔥 "+DB.stats.streak;
+  $("#greeting").textContent = greetingText();
+  const nt=nextTask();
+  $("#sessionStatus").textContent = nt ? ("Up next: "+nt.label) : "All done today — ¡bien hecho! 🎉";
+  $("#startSession").textContent = (coreDoneCount()===0?"▶ Start session":(nt?"▶ Continue session":"✓ Done today"));
+  $("#startSession").disabled = !nt;
+  // mini goals
+  const t=currentTarget();
+  const mg=[["Practice",DB.today.pr||0,t.pr],["Recall",DB.today.rc||0,t.rc],["Listen",DB.today.ls||0,t.ls]];
+  $("#miniGoals").innerHTML = mg.map(([lbl,have,need])=>{
+    const done=have>=need, w=Math.min(100,have/need*100);
+    return '<span class="mini-goal'+(done?' done':'')+'">'+lbl+' '+Math.min(have,need)+'/'+need+'<span class="mg-bar"><i style="width:'+w+'%"></i></span></span>';
+  }).join("");
+  // maintenance
+  const md=maintenanceDue().length;
+  const rb=$("#recheckToday"); if(rb){ rb.style.display = md>0?"inline-flex":"none"; $("#maintCount").textContent=md; }
+}
+function startSession(){
+  const nt=nextTask();
+  if(!nt){ toast("All done for today! 🎉"); confetti(); return; }
+  if(nt.key==="islands"){ showView("islands"); setTimeout(()=>startPractice("learn"),250); }
+  else if(nt.key==="maint"){ showView("islands"); setTimeout(()=>startPractice("maint"),250); }
+  else if(nt.key==="listen"){ showView("listen"); toast("Press ▶ to start listening"); }
+  else if(nt.key==="recall"){ showView("recall"); }
+}
+$("#startSession").onclick=startSession;
+$("#recheckToday").onclick=()=>{ showView("islands"); setTimeout(()=>startPractice("maint"),250); };
+$("#reCheck").onclick=()=>startPractice("maint");
+$("#reminderGo").onclick=()=>{ $("#reminderBanner").classList.remove("show"); startSession(); };
+
+/* ---- Vault ---- */
+function renderVault(){
+  const learned=[...learnedWordSet()].sort((a,b)=>a.localeCompare(b,"es"));
+  $("#vaultLearned").textContent=learned.length;
+  $("#vaultMastered").textContent=DB.islands.filter(s=>s.mastered).length;
+  const md=maintenanceDue().length;
+  $("#vaultDue").textContent=md; $("#vaultDue2").textContent=md;
+  vaultFilter("");
+}
+function vaultFilter(q){
+  q=(q||"").toLowerCase().trim();
+  // group learned words by source category (first mastered island containing them)
+  const learned=learnedWordSet();
+  const byCat={};
+  DB.islands.filter(s=>s.mastered).forEach(s=>{ islandWordSet(s).forEach(w=>{ if(!byCat[w]) byCat[w]=s.cat||"Other"; }); });
+  let words=[...learned].filter(w=>!q||w.includes(q)).sort((a,b)=>a.localeCompare(b,"es"));
+  if(!words.length){ $("#vaultWords").innerHTML='<div class="empty"><div class="big">🗃️</div>'+(learned.size?"No match.":"Master an island to bank its words here.")+'</div>'; return; }
+  const groups={}; words.forEach(w=>{ const c=byCat[w]||"Other"; (groups[c]=groups[c]||[]).push(w); });
+  $("#vaultWords").innerHTML = Object.keys(groups).sort().map(c=>
+    '<div class="vault-group"><h4>'+esc(c)+' ('+groups[c].length+')</h4><div class="wordchips">'+
+    groups[c].map(w=>'<span class="wchip" data-w="'+esc(w)+'">'+esc(w)+'</span>').join("")+'</div></div>'
+  ).join("");
+  $$("#vaultWords .wchip").forEach(el=>el.onclick=()=>speak(el.dataset.w));
+}
+$("#vaultSearch").oninput=e=>vaultFilter(e.target.value);
+$("#vaultRecheck").onclick=()=>{ showView("islands"); setTimeout(()=>startPractice("maint"),250); };
+
+/* ---- Reminders ---- */
+let reminderTimer=null;
+function checkReminderBanner(){
+  const t=DB.settings.reminderTime; const b=$("#reminderBanner"); if(!b) return;
+  if(t && coreDoneCount()<CORE.length){
+    const [h,m]=t.split(":").map(Number); const now=new Date();
+    if(now.getHours()>h || (now.getHours()===h && now.getMinutes()>=m)){ b.classList.add("show"); return; }
+  }
+  b.classList.remove("show");
+}
+function scheduleReminder(){
+  if(reminderTimer){ clearTimeout(reminderTimer); reminderTimer=null; }
+  const t=DB.settings.reminderTime; if(!t) return;
+  const [h,m]=t.split(":").map(Number); const now=new Date();
+  const fire=new Date(); fire.setHours(h,m,0,0);
+  if(fire>now){ reminderTimer=setTimeout(()=>{ checkReminderBanner();
+    try{ if("Notification" in window && Notification.permission==="granted" && coreDoneCount()<CORE.length){ new Notification("¡Hora del español! 🇪🇸",{body:"Your daily Spanish target is waiting."}); } }catch(e){}
+  }, fire-now); }
+}
+function downloadICS(time){
+  const [h,m]=time.split(":").map(Number);
+  const pad=n=>String(n).padStart(2,"0");
+  const d=new Date(); const dt=pad(d.getFullYear())+pad(d.getMonth()+1)+pad(d.getDate());
+  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Mis Islas//ES//EN","BEGIN:VEVENT",
+    "UID:misislas-"+Date.now()+"@local","DTSTART:"+dt+"T"+pad(h)+pad(m)+"00","DURATION:PT15M",
+    "RRULE:FREQ=DAILY","SUMMARY:Spanish practice 🇪🇸 (Mis Islas)","DESCRIPTION:Time for your daily Spanish islands.","END:VEVENT","END:VCALENDAR"].join("\r\n");
+  download("mis-islas-reminder.ics", ics, "text/calendar");
+  toast("Calendar reminder downloaded — open it to add");
+}
+
+
+(async function init(){
+  await loadDB();
+  player.rate=DB.settings.rate||0.9; $("#lRate").value=player.rate; $("#rateVal").textContent=player.rate.toFixed(2);
+  // On first run, lock in the best European-Spanish (Google es-ES) voice once voices are ready
+  function autoVoice(){ if(!DB.settings.voiceURI){ const v=pickVoice(); if(v){ DB.settings.voiceURI=v.voiceURI; saveDB(); } } }
+  autoVoice(); setTimeout(autoVoice, 800);
+  renderToday();
+  updateLoadMoreLabel();
+  scheduleReminder();
+  if(Store.mode==="memory"){ setTimeout(()=>toast("Heads up: storage is blocked here — use ⇅ Export to save your work."),1200); }
+})();
+</script>
+</body>
+</html>
